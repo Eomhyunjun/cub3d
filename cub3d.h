@@ -12,8 +12,20 @@ typedef struct	s_data {
 	int			endian;
 }				t_data;
 
-void			draw(t_data *data);
-void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+typedef struct s_param{
+	void		*mlx;
+	void		*mlx_win;
+	int			r;
+	int			g;
+	int			b;
+	int			up;
+	int			down;
+	int			left;
+	int			right;
+	t_data		*img;
+}				t_param;
+
+
 int				create_trgb(int t, int r, int g, int b);
 int				get_t(int trgb);
 int				get_r(int trgb);
