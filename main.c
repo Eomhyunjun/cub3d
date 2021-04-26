@@ -1,56 +1,59 @@
 #include <unistd.h>
 #include <fcntl.h>
-#include "mygnl/get_next_line.h"
+#include <stdio.h>
+#include "src/get_next_line.h"
+#include "libft/libft.h"
 
 typedef struct s_info
 {
+    char *rw;
+    char *rh;
     char *no;
     char *so;
     char *we;
     char *ea;
     char *s;
-    char *Rw;
-    char *Rh;
-    char *Frgb;
-    char *Crgb;
-} t_info
+    char *f;
+    char *c;
+} t_info;
 
 int     parse_R(char *line, t_info *parse_info)
 {
-    char bottle[4];
-
-    bottle[3] = '\0';
-    line++;
-    while(is_blank(*line))
+    char    **bottle;
+    char    *start;
+    
+    start = line;
+    line += 2;
+    while (*line == ' ')
         line++;
-    if (is_space(*line))
-        line++;
-    else
+    
+    if (!ft_isdigit(*line))
         return (0); //parsing err
 
-    whlie(*line)
+    while (*line)
     {
-        if (is_digit(*line))
+        if (ft_isdigit(*line))
             line++;
         else if (*line == ' ')
-            break;
+            break ;
         else
-            return (0) //parsing err
+            return (0); //parsing err
     }
-
-    whlie(*line)
+    while (*line == ' ')
+        line++;
+    while (*line)
     {
-        if (ft_is_digit(*line))
+        if (ft_isdigit(*line))
             line++;
         else if (*line == '\0')
             break;
         else
-            return (0) //parsing err
+            return (0); //parsing err
     }
 
-    bottle = ft_split(line, ' ');
-    parse_info.Rw = bottle[1];
-    parse_info.Rh = bottle[2];
+    bottle = ft_split(start, ' '); // need free
+    parse_info->rw = bottle[1];
+    parse_info->rh = bottle[2];
     return (1);
 }
 
@@ -64,7 +67,7 @@ int    parse_news(char *line, t_info *parse_info, int start)
     ;
     while (line[start] == ' ')
         start++;
-    if (line[0] == 'N' && line[1] == 'O', && line[2] == ' ')
+    if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
         parse_info->no = ft_strndup(line, start, i); //dup
     else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
         parse_info->so = ft_strndup(line, start, i);
@@ -87,11 +90,11 @@ int    parse_rgb(char *line, t_info *parse_info, int start)
     while (line[start] == ' ')
         start++;
     i = start;
-    while (ft_isnum(line[i]) || line[i] == ',')
+    while (ft_isdigit(line[i]) || line[i] == ',')
     {
-        if (ft_isnum(line[i]))
+        if (ft_isdigit(line[i]))
             i++;
-        if else (line[i] == ',' && ft_isnum(line[i+1] == 1) && j <= 1)
+        else if((line[i] == ',' && ft_isdigit(line[i+1]) == 1) && j <= 1)
         {
             i++;
             j++;
@@ -100,51 +103,78 @@ int    parse_rgb(char *line, t_info *parse_info, int start)
             return (0); /* ',' num over err or Out of specification  */
     }
     if (line[0] == 'F' && line[1] == ' ')
-        parse_info->f = ft_strndup(line, start, i);
+        parse_info->f = ft_strndup(line, start, i); // need free
     else if (line[0] == 'C' && line[1] == ' ')
-        parse_info->c = ft_strndup(line, start, i);
+        parse_info->c = ft_strndup(line, start, i); // need free
     return (1);
 }
 
-int     devide(char *line)
+int     parse_map(char *line, char **map)
 {
-    t_info parse_info;
+    if(!(*map = ft_strdup(line)))  // need free
+    {
+        return (0);
+    }
+    
+    return (1);
+}
+
+int     devide(char *line, t_info *parse_info, char **map)
+{
     int res;
 
     res = 0;
-    bzero(parse_info);
+    if (line[0] == '\0')
+        res = 1;
     if (line[0] == 'R' && line[1] == ' ')
-        res = parse_R(line, &parse_info);
+        res = parse_R(line, parse_info);
     else if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
-        res = parse_news(line, &parse_info, 3);
+        res = parse_news(line, parse_info, 3);
     else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
-        res = parse_news(line, &parse_info, 3);
+        res = parse_news(line, parse_info, 3);
     else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
-        res = parse_news(line, &parse_info, 3);
+        res = parse_news(line, parse_info, 3);
     else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
-        res = parse_news(line, &parse_info, 3);
+        res = parse_news(line, parse_info, 3);
     else if (line[0] == 'S' && line[1] == ' ')
-        res = parse_news(line, &parse_info, 2);
+        res = parse_news(line, parse_info, 2);
     else if (line[0] == 'F' && line[1] == ' ')
-        res = parse_rgb(line, &parse_info, 2);
+        res = parse_rgb(line, parse_info, 2);
     else if (line[0] == 'C' && line[1] == ' ')
-        res = parse_rgb(line, &parse_info, 2);
-    return (res)
+        res = parse_rgb(line, parse_info, 2);
+    else if (ft_isdigit(line[0])) // 엘스 받아서 띄어쓰기 공백 처리하기
+        res = parse_map(line, map);
+    return (res);
 }
 
-int     parsingAll(void)
+int get_next_line_arg(int fd, char **line, int *res)
 {
+    *res = get_next_line(fd, line);
+    return (*res);
+}
+
+int parsingAll(void)
+{
+    t_info parse_info;
+    char    *map[24];
     char    *parse;
     char    *line;
     int     fd;
+    int     i;
     int     res;
 
+    i = 0;
+    ft_bzero(&parse_info, sizeof(t_info));
     fd = open("map.cub", O_RDWR);
-    while (res = get_next_line(fd, &line))
+    while (get_next_line_arg(fd, &line, &res))
     {            
-        if (!devide(line))
+        if (!devide(line, &parse_info, &map[i]))
             return (0); /* parsing err */ 
+        i++;
     }
+    printf(" Rw : %s\n Rh : %s\n NO : %s\n SO : %s\n WE : %s\n EA : %s\n S : %s\n F : %s\n C : %s\n", parse_info.rw, parse_info.rh, parse_info.no, parse_info.so,parse_info.we,parse_info.ea,parse_info.s,parse_info.f,parse_info.c);
+    for (i = 9; *map[i] != '\0'; i++)
+        printf("%s\n", map[i]);
     if (res == 1)
         return (1); /* eof */
     return (0); /* get_next_line err */
@@ -156,6 +186,5 @@ int     main(void)
 
     res = 0;
     res = parsingAll();
-    ft_printf("")
     return (0);
 }
