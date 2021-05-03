@@ -32,24 +32,26 @@ int     copyMap(t_list *map_list, char **map)
     int i;
     i = 0;
 
-    (*map)[i++] = 'h';
+    (*map)[i++] = ' ';
     while (map_list->content[i - 1])
     {
         (*map)[i] = map_list->content[i - 1];
         i++;
     }
-    (*map)[i++] = 'h';
+    (*map)[i++] = ' ';
     (*map)[i] = '\0';
     return (1);
 }
 char    *putSpace(char *space, int longlen)
 {
     char tmp[longlen + 1];
+    int i;
     
+    i = 0;
     tmp[longlen] = '\0';
-    while(longlen--)
+    while(i < longlen)
     {
-        tmp[longlen] = '2';
+        tmp[i++] = ' ';
     }
     space = tmp;
     return (space);
@@ -71,8 +73,6 @@ char    **makeMatrix(t_list *map_list, char **map, int longlen)
         map_list = map_list->next;
         i++;
     }
-    map[0] = "        hi                  ";
-    map[i++] = "           bye                 ";
     map[i] = NULL;
     return (map);
 }
@@ -80,7 +80,10 @@ char    **makeMatrix(t_list *map_list, char **map, int longlen)
 char    **checkMap(t_list *map_list, char **map, t_info *parse_info)
 {
     int res;
+    char *space;
 
+    map_list->content = putSpace(space, parse_info->longlen);
+    ft_lstadd_back(&map_list, ft_lstnew(map_list->content));
     map = makeMatrix(map_list, map, parse_info->longlen);
     //makeSkin(map);
     return (map);
