@@ -2,6 +2,9 @@
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
         "cub3.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "limits.h": "c",
+        "__locale": "c",
+        "locale": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:43 by heom              #+#    #+#             */
-/*   Updated: 2021/04/29 21:12:30 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/03 15:54:41 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_info
     char    *f;
     char    *c;
     int     dup[9];
+    int     longlen;
 } t_info;
 
 //parsing_info
