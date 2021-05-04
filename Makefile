@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/04/29 22:00:12 by heom             ###   ########.fr        #
+#    Updated: 2021/05/04 10:15:06 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,20 @@ DEBUGF = -g3 -fsanitize=address
 
 SRC = main.c \
 	libft/libft.a \
+	src/arg.c \
 	src/get_next_line/get_next_line.c \
 	src/get_next_line/get_next_line_utils.c \
-	src/parsingInfo.c \
-	src/parse_r.c \
-	src/parse_news.c \
-	src/parse_rgb.c \
-	src/dupCheck.c \
+	src/parseInfo/parsingInfo.c \
+	src/parseInfo/parse_r.c \
+	src/parseInfo/parse_news.c \
+	src/parseInfo/parse_rgb.c \
+	src/parseInfo/dupCheck.c \
+	src/mapParsing/makeMatrix.c \
+	src/mapParsing/putSpace.c \
+	src/mapParsing/checkMap.c \
+	src/mapParsing/copyMap.c \
+	src/mapParsing/parsingMap.c \
+
 
 all :
 	$(CC) $(CFLAGS) $(SRC)

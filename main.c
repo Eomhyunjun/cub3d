@@ -6,88 +6,11 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/03 17:06:50 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/04 10:15:23 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3.h"
-
-int     parsingMap(char *line, t_list **map_list, t_info *parse_info)
-{
-    if(parse_info->longlen < ft_strlen(line))
-        parse_info->longlen = ft_strlen(line);
-    ft_lstadd_back(map_list, ft_lstnew(line));
-    return (ft_strlen(line));
-}
-
-int     get_next_line_arg(int fd, char **line, int *res)
-{
-    *res = get_next_line(fd, line);
-    return (*res);
-}
-
-
-int     copyMap(t_list *map_list, char **map)
-{
-    int i;
-    i = 0;
-
-    (*map)[i++] = ' ';
-    while (map_list->content[i - 1])
-    {
-        (*map)[i] = map_list->content[i - 1];
-        i++;
-    }
-    (*map)[i++] = ' ';
-    (*map)[i] = '\0';
-    return (1);
-}
-char    *putSpace(char *space, int longlen)
-{
-    char tmp[longlen + 1];
-    int i;
-    
-    i = 0;
-    tmp[longlen] = '\0';
-    while(i < longlen)
-    {
-        tmp[i++] = ' ';
-    }
-    space = tmp;
-    return (space);
-}
-char    **makeMatrix(t_list *map_list, char **map, int longlen)
-{
-    int     lstsize;
-    int     i;
-
-    i = 0;
-    lstsize = ft_lstsize(map_list) + 2;
-    if(!(map = (char **)malloc(sizeof(char *) * lstsize)))
-        return (NULL);
-    while(map_list)
-    {
-        if (!(map[i] = (char *)malloc(sizeof(char) * (ft_strlen(map_list->content) + 3))))
-            return (0);
-        copyMap(map_list, &map[i]);
-        map_list = map_list->next;
-        i++;
-    }
-    map[i] = NULL;
-    return (map);
-}
-
-char    **checkMap(t_list *map_list, char **map, t_info *parse_info)
-{
-    int res;
-    char *space;
-
-    map_list->content = putSpace(space, parse_info->longlen);
-    ft_lstadd_back(&map_list, ft_lstnew(map_list->content));
-    map = makeMatrix(map_list, map, parse_info->longlen);
-    //makeSkin(map);
-    return (map);
-}
 
 int parsingAll(void)
 {

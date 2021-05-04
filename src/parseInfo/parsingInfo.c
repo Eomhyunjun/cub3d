@@ -6,11 +6,11 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:55 by heom              #+#    #+#             */
-/*   Updated: 2021/04/29 22:29:09 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/04 10:06:25 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3.h"
+#include "../../cub3.h"
 
 int     parsingInfo(char *line, t_info *parse_info)
 {
