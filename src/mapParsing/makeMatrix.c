@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   makematrix.c                                       :+:      :+:    :+:   */
+/*   makeMatrix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 09:55:34 by heom              #+#    #+#             */
-/*   Updated: 2021/05/04 10:06:38 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/04 14:17:01 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ char    **makeMatrix(t_list *map_list, char **map, int longlen)
     int     i;
 
     i = 0;
-    lstsize = ft_lstsize(map_list) + 2;
+    lstsize = ft_lstsize(map_list) + 3;
     if(!(map = (char **)malloc(sizeof(char *) * lstsize)))
         return (NULL);
+    map[i++] = putSpace(longlen);
     while(map_list)
     {
         if (!(map[i] = (char *)malloc(sizeof(char) * (ft_strlen(map_list->content) + 3))))
@@ -29,6 +30,7 @@ char    **makeMatrix(t_list *map_list, char **map, int longlen)
         map_list = map_list->next;
         i++;
     }
+    map[i++] = putSpace(longlen);
     map[i] = NULL;
     return (map);
 }
