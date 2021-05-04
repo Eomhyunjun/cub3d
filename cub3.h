@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:43 by heom              #+#    #+#             */
-/*   Updated: 2021/05/04 14:11:45 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/04 15:15:07 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int     dupCheck(char *line, t_info *parse_info);
 //parsing_map
 int     parsingMap(char *line, t_list **map_list, t_info *parse_info);
 char    *putSpace(int longlen);
-int     copyMap(t_list *map_list, char **map);
+int     copyMap(t_list *map_list, char **map, int longlen);
 char    **makeMatrix(t_list *map_list, char **map, int longlen);
 int     mapErrCehck(char **map);
 char    **checkMap(t_list *map_list, char **map, t_info *parse_info);
