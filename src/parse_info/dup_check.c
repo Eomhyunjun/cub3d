@@ -6,13 +6,13 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:26:53 by heom              #+#    #+#             */
-/*   Updated: 2021/05/04 10:05:53 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/05 16:03:59 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-int dupCheck(char *line, t_info *parse_info)
+int dup_check(char *line, t_info *parse_info)
 {
     int res;
 

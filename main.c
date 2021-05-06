@@ -6,77 +6,88 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/04 15:56:22 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/06 21:07:35 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3.h"
 
-int parsingAll(void)
+
+int		main_loop(t_mini *mini)
 {
-    t_info  parse_info;
-    t_list  *map_list;
-    char    *line;
-    char    **map;
-    int     fd;
-    int     longlen;
-    int     res;
+	int	pos;
+	int	i;
 
-    ft_bzero(&parse_info, sizeof(t_info));
-    parse_info.dup[8] = '\0';
-    fd = open("map.cub", O_RDWR);
+	i = 0;
+	while (i <= mini->rows)
+	{
+		pos = 0;
+		while (pos <= mini->width){
+			mlx_pixel_put(mini->mlx, mini->win, pos, i * (mini->height / mini->rows),mini->grid_color);
+			pos++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i <= mini->cols)
+	{
+		pos = 0;
+		while (pos <= mini->width){
+			mlx_pixel_put(mini->mlx, mini->win, i * (mini->width/ mini->cols), pos,mini->grid_color);
+			pos++;
+		}
+		i++;
+	}
+	return (0);
+}
 
-    //info_check
-    while (get_next_line_arg(fd, &line, &res))
-    {
-        if ((res = parsingInfo(line, &parse_info)) == 0)
-            return (0); /* duple err */
-        if (res == 2)
-            break ; /* readAll */
-        free(line);
-    }
+void	win_img_init(t_mini *mini)
+{
+
+	mini->grid_color = 0xFFFFFF;
+	mini->mlx = mlx_init();
+	mini->win = mlx_new_window(mini->mlx, mini->width, mini->height, "HEOM's Cub3d Mini_Map"); // window 상자
+    mini->img.img = mlx_new_image(mini->mlx, mini->width, mini->height); // image 상자
+    mini->img.data = (int *)mlx_get_data_addr(mini->img.img, &mini->img.bits_per_pixel, &mini->img.line_length, &mini->img.endian); //image 정보 틀 제공
+}
+
+int     mlx_process(t_info parse_info, char **map)
+{   
+	void	*mlx;
+	void	*win;
+    t_mini  mini;
     
-    //map_check
-    map_list = NULL;
-    while (1)
-    {
-        parsingMap(line, &map_list, &parse_info);
-        if (!(get_next_line_arg(fd, &line, &res)))
-        {
-            parsingMap(line, &map_list, &parse_info);
-            break;
-        }
-    }
-    if(!(map = checkMap(map_list, map, &parse_info)))
-        return (0); /*map err*/
+    mini.width = ft_atoi(parse_info.rw);
+    mini.height = ft_atoi(parse_info.rh);
+    mini.cols = parse_info.cols - 2;
+    mini.rows = parse_info.longlen - 3;
+    mini.map = map;
+	win_img_init(&mini);
 
-    //print remove
-    printf(" Rw : %s\n Rh : %s\n NO : %s\n SO : %s\n WE : %s\n EA : %s\n S : %s\n F : %s\n C : %s\n", parse_info.rw, parse_info.rh, parse_info.no, parse_info.so,parse_info.we,parse_info.ea,parse_info.s,parse_info.f,parse_info.c);
-    int i = 0;
-    printf("====================================================\n");
-    while (map[i])
-    {
-        printf("|%s|\n", map[i]);
-        i++;
-    }
-    printf("====================================================\n");
+	//mini.img.img = mlx_xpm_file_to_image(mlx, "./doge.xpm", &mini.cols, &mini.rows);
+    //mlx_put_image_to_window(mini.mlx, mini.win, mini.img.img, 0, 0);
 
-    //result
-    ft_lstclear(&map_list, free);
-    if (res == 0 && *map != NULL) //printf 없어야 통과함
-        return (1); /* eof */
-    return (0); /* get_next_line err */
+    mlx_loop_hook(mini.mlx, &main_loop, &mini);
+    mlx_loop(mini.mlx);
+    
+    return (0);
 }
 
 int     main(void)
 {
-    int res;
+    int     res;
+    char    **map;
+    t_info  parse_info;
+    t_list  *map_list;
 
     res = 0;
-    res = parsingAll();
-
+    ft_bzero(&parse_info, sizeof(t_info));
+    parse_info.dup[8] = '\0';
+    map_list = NULL;
+    res = parsing_all(&parse_info, map_list, map);
+    
     if (res == 0)           //print remove
         printf("hello duple err");
-    
+    mlx_process(parse_info, map);
     return (0);
 }

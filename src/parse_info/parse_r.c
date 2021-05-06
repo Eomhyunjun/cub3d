@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/04 10:05:59 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/06 19:09:14 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int     parse_r(char *line, t_info *parse_info)
     bottle = ft_split(start, ' '); // need free
     parse_info->rw = bottle[1];
     parse_info->rh = bottle[2];
+    free(bottle);
     return (1);
 }

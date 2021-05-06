@@ -26,8 +26,6 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-//int		draw(t_data *img, t_param *param)
-
 int		draw(t_param *param)
 {
 	int x;
@@ -43,6 +41,7 @@ int		draw(t_param *param)
 	printf("param.up: %d, param.left: %d, param->r: %d, param->g: %d, param->b: %d\n", param->up, param->left, param->r, param->g, param->b);
 	if (param->up < 0)
 		return (0);
+
 	while (y > param->up)
 	{
 		x -= i;
@@ -74,7 +73,8 @@ void	param_init(t_param *param, t_data *img, void *mlx, void *mlx_win)
 
 int		key_press(int keycode, t_param *param)
 {
-	static int a = 0;
+	int x = 0;
+	int y = 0;
 
 	if (keycode == KEY_W)
 		param->up += 10;
@@ -92,7 +92,19 @@ int		key_press(int keycode, t_param *param)
 		param->b+=10;
 	else if (keycode == KEY_ESC)
 		exit(0);
-	
+	if (param->up < 0)
+		return (0);
+	while (y <= 1000)
+	{
+		while (x <= 1000)
+		{
+			my_mlx_pixel_put(param->img, x, y, create_trgb(0, 0, 0, 0));
+			x++;
+		}
+		y++;
+		x = 0;
+	}
+	draw(param);
 	return (0);
 }
 
@@ -108,19 +120,17 @@ int		main(void)
 	mlx_win = mlx_new_window(mlx, 1000, 1000, "mlx_project"); //window 상자
 	img.img = mlx_new_image(mlx, 1000, 1000); // image 상자
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-
 	
 
 	//draw(&img, &param); // put으로 그리기
-/*	
-	for(int i = 0; i < 1000; ++i)
-		printf("%d", img.addr[i]);
-		*/
+
+	//for(int i = 0; i < 1000; ++i)
+	//	printf("%d", img.addr);
 	param_init(&param, &img, mlx, mlx_win);
 	//draw(&param);
+	mlx_clear_window(param.mlx, param.mlx_win);
 	mlx_hook(mlx_win, X_EVENT_KEY_PRESS, 0, &key_press, &param);
-	mlx_loop_hook(mlx, draw, &param);
-	mlx_loop(mlx);
+	mlx_loop(mlx); //이벤트 감지할때까지 루프 -> 감지 시 mlx_hook(사용자 정의함수) 호출
 
 	return (0);
 }

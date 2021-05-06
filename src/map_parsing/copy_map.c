@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putSpace.c                                         :+:      :+:    :+:   */
+/*   copyMap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 09:59:16 by heom              #+#    #+#             */
-/*   Updated: 2021/05/04 14:15:44 by heom             ###   ########.fr       */
+/*   Created: 2021/05/04 10:11:23 by heom              #+#    #+#             */
+/*   Updated: 2021/05/05 16:01:59 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-char    *putSpace(int longlen)
+int     copy_map(t_list *map_list, char **map, int longlen)
 {
-    char    *str;
-    char    *ptr;
+    int i;
+    i = 0;
 
-    longlen += 2;
-    str = malloc(longlen + 1);
-    ptr = str;
-    while (longlen--)
-        *ptr++ = ' ';
-    *ptr = '\0';
-    return (str);
+    (*map)[i++] = ' ';
+    while (map_list->content[i - 1])
+    {
+        (*map)[i] = map_list->content[i - 1];
+        i++;
+    }
+    while (i <= longlen)
+        (*map)[i++] = ' ';
+    (*map)[i++] = ' ';
+    (*map)[i] = '\0';
+    return (1);
 }

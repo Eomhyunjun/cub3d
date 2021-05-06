@@ -5,6 +5,9 @@
         "libft.h": "c",
         "limits.h": "c",
         "__locale": "c",
-        "locale": "c"
+        "locale": "c",
+        "mlx.h": "c",
+        "get_next_line.h": "c",
+        "math.h": "c"
     }
 }

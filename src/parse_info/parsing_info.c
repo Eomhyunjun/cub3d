@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsingInfo.c                                      :+:      :+:    :+:   */
+/*   parsing_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:55 by heom              #+#    #+#             */
-/*   Updated: 2021/05/04 10:06:25 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/05 16:07:51 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-int     parsingInfo(char *line, t_info *parse_info)
+int     parsing_info(char *line, t_info *parse_info)
 {
     int res;
 
@@ -39,6 +39,6 @@ int     parsingInfo(char *line, t_info *parse_info)
         res = 2;
     
     if (res == 1)
-        res = dupCheck(line, parse_info);
+        res = dup_check(line, parse_info);
     return (res);
 }
