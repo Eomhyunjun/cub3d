@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 09:55:34 by heom              #+#    #+#             */
-/*   Updated: 2021/05/05 16:03:11 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/07 15:04:16 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ char    **make_matrix(t_list *map_list, char **map, int longlen)
     while(map_list)
     {
         if (!(map[i] = (char *)malloc(sizeof(char) * (longlen + 3))))
-            return (0);
-        copy_map(map_list, &map[i], longlen);
+            return (NULL);
+        if (!(copy_map(map_list, &map[i], longlen)))
+            return (NULL);
         map_list = map_list->next;
         i++;
     }
