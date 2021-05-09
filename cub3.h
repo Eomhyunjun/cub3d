@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/09 16:28:08 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/09 18:52:23 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,20 @@ typedef struct	s_player
 	int			color;
 }				t_player;
 
+typedef	struct	s_vec
+{
+	double		x;
+	double		y;
+}				t_vec;
+
 typedef struct	s_mini
 {
 	void		*mlx;
 	void		*win;
 	t_img		img;
 	t_player	player;
-	// t_vec		dir;
-	// t_vec		plane;
+	t_vec		dir;
+	t_vec		plane;
 	
 	char		**map;
 	int			width;
@@ -80,12 +86,6 @@ typedef struct	s_mini
 	
 	int			grid_color;
 }				t_mini;
-
-// typedef	struct	s_vec
-// {
-// 	double		x;
-// 	double		y;
-// }				t_vec
 
 
 
