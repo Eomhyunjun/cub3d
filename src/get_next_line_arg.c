@@ -6,14 +6,14 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 09:53:59 by heom              #+#    #+#             */
-/*   Updated: 2021/05/04 10:05:50 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/09 16:05:28 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3.h"
 
-int     get_next_line_arg(int fd, char **line, int *res)
+int get_next_line_arg(int fd, char **line, int *res)
 {
-    *res = get_next_line(fd, line);
-    return (*res);
+	*res = get_next_line(fd, line);
+	return (*res);
 }

@@ -121,11 +121,6 @@ int		main(void)
 	img.img = mlx_new_image(mlx, 1000, 1000); // image 상자
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	
-
-	//draw(&img, &param); // put으로 그리기
-
-	//for(int i = 0; i < 1000; ++i)
-	//	printf("%d", img.addr);
 	param_init(&param, &img, mlx, mlx_win);
 	//draw(&param);
 	mlx_clear_window(param.mlx, param.mlx_win);

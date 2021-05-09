@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/07 15:58:30 by heom             ###   ########.fr        #
+#    Updated: 2021/05/09 16:40:23 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ DEBUGF = -g3 -fsanitize=address
 
 SRC = main.c \
 	libft/libft.a \
-	src/arg.c \
+	src/get_next_line_arg.c \
+	src/parsing_all.c \
 	src/get_next_line/get_next_line.c \
 	src/get_next_line/get_next_line_utils.c \
-	src/parsing_all.c \
 	src/parse_info/parsing_info.c \
 	src/parse_info/parse_r.c \
 	src/parse_info/parse_news.c \
@@ -31,7 +31,7 @@ SRC = main.c \
 	src/map_parsing/copy_map.c \
 	src/map_parsing/parsing_map.c \
 	src/mlx_fuc/mlx_process.c \
-	src/mlx_fuc/win_img_init.c \
+	src/mlx_fuc/about_init.c \
 	src/mlx_fuc/mini_map.c \
 	src/mlx_fuc/dot.c \
 
