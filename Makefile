@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/09 19:53:33 by heom             ###   ########.fr        #
+#    Updated: 2021/05/11 15:18:13 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit $(DEBUGF)
 DEBUGF = -g3 -fsanitize=address
 
 SRC = main.c \
+	color.c \
 	libft/libft.a \
 	src/get_next_line_arg.c \
 	src/parsing_all.c \

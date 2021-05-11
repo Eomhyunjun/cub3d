@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/09 20:24:36 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/11 15:23:12 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,19 @@
 # include "mlx/mlx.h"
 
 
-#define X_EVENT_KEY_PRESS	2
-#define X_EVENT_KEY_EXIT	17
+# define X_EVENT_KEY_PRESS	2
+# define X_EVENT_KEY_EXIT	17
+# define K_ESC			53
+# define K_Q			12
+# define K_W			13
+# define K_E			14
+# define K_R			15
+# define K_A			0
+# define K_S			1
+# define K_D			2
+
 #define texWidth 64
 #define texHeight 64
-#define mapWidth 24
-#define mapHeight 24
 
 typedef struct  s_info
 {
@@ -61,7 +68,8 @@ typedef struct	s_all
 
 	int			width;
 	int			height;
-	char		**buf;
+	int			**buf;
+	char		**map;
 	
 	double posX;
 	double posY;
@@ -75,7 +83,12 @@ typedef struct	s_all
 	double	rotSpeed;
 }				t_all;
 
-
+//make color
+int		create_trgb(int t, int r, int g, int b);
+int		get_t(int trgb);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
 
 //arg
 int				get_next_line_arg(int fd, char **line, int *res);
