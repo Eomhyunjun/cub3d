@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/09 16:40:23 by heom             ###   ########.fr        #
+#    Updated: 2021/05/09 19:53:33 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,6 @@ SRC = main.c \
 	src/map_parsing/check_map.c \
 	src/map_parsing/copy_map.c \
 	src/map_parsing/parsing_map.c \
-	src/mlx_fuc/mlx_process.c \
-	src/mlx_fuc/about_init.c \
-	src/mlx_fuc/mini_map.c \
-	src/mlx_fuc/dot.c \
 
 
 all :
