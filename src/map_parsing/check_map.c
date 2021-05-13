@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 10:09:27 by heom              #+#    #+#             */
-/*   Updated: 2021/05/11 14:45:18 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/13 19:31:44 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		map_errchk(char **map)
 {
 	int is_zero = 0;
 	int x = 0;
-	int y = 0;
+	int y = -1;
 
 	while (map[++y])
 	{
@@ -68,6 +68,8 @@ char	**check_map(t_list *map_list, t_info *parse_info)
 	/*Linkedlist->matrix*/
 	map = make_matrix(map_list, map, parse_info->longlen);
 	parse_info->cols = ft_lstsize(map_list);
+	if (map == NULL)
+		return (NULL);
 	map_errchk(map);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/11 15:23:12 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/13 20:57:27 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include "src/get_next_line/get_next_line.h"
-# include "libft/libft.h"
+# include "utils/get_next_line/get_next_line.h"
+# include "utils/libft/libft.h"
 # include "mlx/mlx.h"
 
 
@@ -58,6 +58,9 @@ typedef struct	s_img {
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+
+	int			img_width;
+	int			img_height;
 }				t_img;
 
 typedef struct	s_all
@@ -78,30 +81,31 @@ typedef struct	s_all
 	double planeX;
 	double planeY;
 
-	int		texture[8][texHeight * texWidth];
+	int		texture[7][texHeight * texWidth];
 	double	moveSpeed;
 	double	rotSpeed;
 }				t_all;
 
-//make color
-int		create_trgb(int t, int r, int g, int b);
-int		get_t(int trgb);
-int		get_r(int trgb);
-int		get_g(int trgb);
-int		get_b(int trgb);
-
-//arg
+/*
+--------------------- arg -------------------
+*/
 int				get_next_line_arg(int fd, char **line, int *res);
 int				parsing_all(t_info  *parse_info, t_list  *map_list, char ***map);
+void			split_free(char **bottle);
 
-//parsing_info
+
+/*
+--------------------- parsing_info -------------------
+*/
 int				parsing_info(char *line, t_info *parse_info);
 int				parse_r(char *line, t_info *parse_info);
 int				parse_news(char *line, t_info *parse_info, int start);
 int				parse_rgb(char *line, t_info *parse_info, int start);
 int				dup_check(char *line, t_info *parse_info);
 
-//parsing_map
+/*
+--------------------- parsing_map -------------------
+*/
 int				parsing_map(char *line, t_list **map_list, t_info *parse_info);
 char			*put_space(int longlen);
 int				copy_map(t_list *map_list, char **map, int longlen);
@@ -109,5 +113,28 @@ char			**make_matrix(t_list *map_list, char **map, int longlen);
 int				exam_map(char **map, int x, int y);
 int				map_errchk(char **map);
 char			**check_map(t_list *map_list, t_info *parse_info);
+
+/*
+--------------------- make_color -------------------
+*/
+int		create_trgb(char *trgb);
+int		get_t(int trgb);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
+
+/*
+--------------------- graphics -------------------
+*/
+int		main_loop(t_all *all);
+int		mlx_process(t_info *parse_info, char **map);
+void	all_init(t_all *all, t_info *parse_info);
+void	malloc_buf(t_all *all);
+void	load_image(t_all *all, int *texture, char *path, t_img *img);
+void	texture_init(t_all *all, t_info *parse_info);
+int		make_texNum(t_all *all, int y, int x, int side);
+void	calc(t_all *all);
+void	draw(t_all *all);
+int		key_press(int key, t_all *all);
 
 #endif
