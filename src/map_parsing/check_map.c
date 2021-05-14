@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 10:09:27 by heom              #+#    #+#             */
-/*   Updated: 2021/05/13 19:31:44 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/14 20:44:52 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ int		map_errchk(char **map)
 				is_zero = 1;
 				if (exam_map(map, x, y) == 0)
 				{
-					write(1, "ERROR\n", 6);
-					return (0) ;
+					printf("ERROR\n Map is not rapped\n");
+					return (0);
 				}
 			}
 	}
 	if (is_zero == 0)
-		write(1, "map_Check_ERROR\n", 17);
-	else
 	{
-		write(1, "map_Check_OK\n", 14);
+		printf("ERROR\n map_check_err\n");
 		return (0);
 	}
+	else
+		printf("Map_OK\n");
 	return (1);
 }
 
@@ -66,10 +66,11 @@ char	**check_map(t_list *map_list, t_info *parse_info)
 	char *space;
 	char **map;
 	/*Linkedlist->matrix*/
-	map = make_matrix(map_list, map, parse_info->longlen);
+	map = make_matrix(map_list, map, parse_info);
 	parse_info->cols = ft_lstsize(map_list);
 	if (map == NULL)
 		return (NULL);
-	map_errchk(map);
+	if (map_errchk(map) == 0)
+		return (NULL);
 	return (map);
 }

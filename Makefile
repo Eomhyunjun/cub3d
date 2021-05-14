@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/13 20:55:41 by heom             ###   ########.fr        #
+#    Updated: 2021/05/14 14:06:12 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS = \
 	src/graphic/texture_init.c \
 	src/graphic/draw.c \
 	src/graphic/key_press.c \
+	src/graphic/key_update.c \
 	src/graphic/make_texNum.c \
 
 all :
