@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:28:48 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 21:07:48 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 18:24:23 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main_loop(t_all *all)
 	{
 		while(all->map[i][j])
 		{
-			if(i == (int)all->posY && j == (int)all->posX)
+			if(i == (int)all->posy && j == (int)all->posx)
 				printf("|P|");
 			else
 				printf("|%c|", all->map[i][j]);
@@ -45,9 +45,9 @@ int		mlx_process(t_info *parse_info, char **map)
 {
 	t_all	all;
 	
-	all_init(&all, parse_info);
 	all.map = map;
-	
+	all_init(&all, parse_info);
+	all.map[parse_info->pos[1]][parse_info->pos[0]] = 'x';
 	malloc_buf(&all);
 	if(!(texture_init(&all, parse_info)))
 		return (0);

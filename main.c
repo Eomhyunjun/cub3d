@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 21:04:14 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 16:04:03 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,37 @@
 
 void	calc_init(t_all *all, t_calc *cal, int x)
 {
-	cal->cameraX = 2 * x / (double)all->width - 1;
-	cal->rayDirX = all->dirX + all->planeX * cal->cameraX;
-	cal->rayDirY = all->dirY + all->planeY * cal->cameraX;
-	cal->mapX = (int)all->posX;
-	cal->mapY = (int)all->posY;
-	cal->deltaDistX = (cal->rayDirY == 0) ? 0 : ((cal->rayDirX == 0) ? 1 : fabs(1 / cal->rayDirX));
-	cal->deltaDistY = (cal->rayDirX == 0) ? 0 : ((cal->rayDirY == 0) ? 1 : fabs(1 / cal->rayDirY));
+	cal->camerax = 2 * x / (double)all->width - 1;
+	cal->raydirx = all->dirx + all->planex * cal->camerax;
+	cal->raydiry = all->diry + all->planey * cal->camerax;
+	cal->mapx = (int)all->posx;
+	cal->mapy = (int)all->posy;
+	cal->deltadistx = (cal->raydiry == 0) ? 0 : ((cal->raydirx == 0) ? 1 : fabs(1 / cal->raydirx));
+	cal->deltadisty = (cal->raydirx == 0) ? 0 : ((cal->raydiry == 0) ? 1 : fabs(1 / cal->raydiry));
 	cal->hit = 0;
 }
 
 void	set_step_side(t_all *all, t_calc *cal)
 {
-		if (cal->rayDirX < 0)
+		if (cal->raydirx < 0)
 		{
-			cal->stepX = -1;
-			cal->sideDistX = (all->posX - cal->mapX) * cal->deltaDistX;
+			cal->stepx = -1;
+			cal->sidedistx = (all->posx - cal->mapx) * cal->deltadistx;
 		}
 		else
 		{
-			cal->stepX = 1;
-			cal->sideDistX = (cal->mapX + 1.0 - all->posX) * cal->deltaDistX;
+			cal->stepx = 1;
+			cal->sidedistx = (cal->mapx + 1.0 - all->posx) * cal->deltadistx;
 		}
-		if (cal->rayDirY < 0)
+		if (cal->raydiry < 0)
 		{
-			cal->stepY = -1;
-			cal->sideDistY = (all->posY - cal->mapY) * cal->deltaDistY;
+			cal->stepy = -1;
+			cal->sidedisty = (all->posy - cal->mapy) * cal->deltadisty;
 		}
 		else
 		{
-			cal->stepY = 1;
-			cal->sideDistY = (cal->mapY + 1.0 - all->posY) * cal->deltaDistY;
+			cal->stepy = 1;
+			cal->sidedisty = (cal->mapy + 1.0 - all->posy) * cal->deltadisty;
 		}
 }
 
@@ -52,19 +52,19 @@ void	set_hit(t_all *all, t_calc *cal)
 {
 	while (cal->hit == 0)
 	{
-		if (cal->sideDistX < cal->sideDistY)
+		if (cal->sidedistx < cal->sidedisty)
 		{
-			cal->sideDistX += cal->deltaDistX;
-			cal->mapX += cal->stepX;
+			cal->sidedistx += cal->deltadistx;
+			cal->mapx += cal->stepx;
 			cal->side = 0;
 		}
 		else
 		{
-			cal->sideDistY += cal->deltaDistY;
-			cal->mapY += cal->stepY;
+			cal->sidedisty += cal->deltadisty;
+			cal->mapy += cal->stepy;
 			cal->side = 1;
 		}
-		if ('x' > all->map[cal->mapY][cal->mapX])
+		if ('x' > all->map[cal->mapy][cal->mapx])
 			cal->hit = 1;
 	}
 }
@@ -75,7 +75,7 @@ void	calc(t_all *all)
 	t_calc cal;
 
 	x = 0;
-	//printf("width : %d height : %d\nposX : %f, posY : %f \n dirX : %f, dirY : %f\nplaneX : %f, planeY : %f\n\n", all->width, all->height, all->posX, all->posY, all->dirX, all->dirY, all->planeX, all->planeY);
+	//printf("width : %d height : %d\nposx : %f, posy : %f \n dirx : %f, diry : %f\nplanex : %f, planey : %f\n\n", all->width, all->height, all->posx, all->posy, all->dirx, all->diry, all->planex, all->planey);
 	while (x < all->width)
 	{
 		calc_init(all, &cal, x);
@@ -83,38 +83,38 @@ void	calc(t_all *all)
 		set_hit(all, &cal);
 		
 		if (cal.side == 0)
-			cal.perpWallDist = (cal.mapX - all->posX + (1 - cal.stepX) / 2) / cal.rayDirX;
+			cal.perpwalldist = (cal.mapx - all->posx + (1 - cal.stepx) / 2) / cal.raydirx;
 		else
-			cal.perpWallDist = (cal.mapY - all->posY + (1 - cal.stepY) / 2) / cal.rayDirY;
+			cal.perpwalldist = (cal.mapy - all->posy + (1 - cal.stepy) / 2) / cal.raydiry;
 
-		int lineHeight = (int)(all->height / cal.perpWallDist);
-		if (cal.perpWallDist <= 0.01 && cal.perpWallDist >= -0.01)
-			lineHeight = 0;
+		int lineheight = (int)(all->height / cal.perpwalldist);
+		if (cal.perpwalldist <= 0.01 && cal.perpwalldist >= -0.01)
+			lineheight = 0;
 
-		int drawStart = -lineHeight / 2 + all->height / 2;
+		int drawStart = -lineheight / 2 + all->height / 2;
 		if(drawStart < 0)
 			drawStart = 0;
-		int drawEnd = lineHeight / 2 + all->height / 2;
-		if(drawEnd >= all->height)
-			drawEnd = all->height - 1;
+		int drawend = lineheight / 2 + all->height / 2;
+		if(drawend >= all->height)
+			drawend = all->height - 1;
 			
-		cal.texNum = make_texNum(all, cal.stepX, cal.stepY, cal.side);
+		cal.texnum = make_texnum(all, cal.stepx, cal.stepy, cal.side);
 
-		double wallX;
+		double wallx;
 		if (cal.side == 0)
-			wallX = all->posY + cal.perpWallDist * cal.rayDirY;
+			wallx = all->posy + cal.perpwalldist * cal.raydiry;
 		else
-			wallX = all->posX + cal.perpWallDist * cal.rayDirX;
-		wallX -= floor(wallX);
+			wallx = all->posx + cal.perpwalldist * cal.raydirx;
+		wallx -= floor(wallx);
 
-		int texX = (int)(wallX * (double)texWidth);
-		if (cal.side == 0 && cal.rayDirX > 0)
-			texX = texWidth - texX - 1;
-		if (cal.side == 1 && cal.rayDirY < 0)
-			texX = texWidth - texX - 1;
+		int tex = (int)(wallx * (double)texwidth);
+		if (cal.side == 0 && cal.raydirx > 0)
+			tex = texwidth - tex - 1;
+		if (cal.side == 1 && cal.raydiry < 0)
+			tex = texwidth - tex - 1;
 
-		double step = 1.0 * texHeight / lineHeight;
-		double texPos = (drawStart - all->height / 2 + lineHeight / 2) * step;
+		double step = 1.0 * texheight / lineheight;
+		double texPos = (drawStart - all->height / 2 + lineheight / 2) * step;
 	
 		for (int y = 0; y < all->height / 2; y++)
 		{
@@ -126,11 +126,11 @@ void	calc(t_all *all)
 				all->buf[y][x] = all->texture[6][0];
 		}
 
-		for (int y = drawStart; y < drawEnd; y++)
+		for (int y = drawStart; y < drawend; y++)
 		{
-			int texY = (int)texPos & (texHeight - 1);
+			int texy = (int)texPos & (texheight - 1);
 			texPos += step;
-			int color = all->texture[cal.texNum][texHeight * texY + texX];
+			int color = all->texture[cal.texnum][texheight * texy + tex];
 			if (cal.side == 1)
 				color = (color >> 1) & 8355711;
 			all->buf[y][x] = color;
@@ -138,7 +138,7 @@ void	calc(t_all *all)
 		x++;
 	}
 
-	//printf("width : %d height : %d\nposX : %f, posY : %f \n dirX : %f, dirY : %f\nplaneX : %f, planeY : %f\n\n", all->width, all->height, all->posX, all->posY, all->dirX, all->dirY, all->planeX, all->planeY);
+	//printf("width : %d height : %d\nposx : %f, posy : %f \n dirx : %f, diry : %f\nplanex : %f, planey : %f\n\n", all->width, all->height, all->posx, all->posy, all->dirx, all->diry, all->planex, all->planey);
 
 }
 
@@ -156,12 +156,12 @@ int			main(void)
 	map_list = NULL;
 	if (!(res = parsing_all(&parse_info, map_list, &map)))
 	{
-		printf("Error\n Invalid value in map pile");
+		printf("error\n Invalid value in map pile");
 		return (0);
 	}
-	res = mlx_process(&parse_info, map);
 	if (res == 0)
-		printf("Error\n parsing_info duple err\n");
+		printf("error\n parsing_info duple err\n");
+	res = mlx_process(&parse_info, map);
 	split_free(map);
 	return (0);
 }

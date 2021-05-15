@@ -1,0 +1,27 @@
+int		can_i_go(t_all *all, double w_posx, double w_posy)
+{
+	double rad;
+	double oldchk_x;
+	double chk_x;
+	double chk_y;
+	double start;
+	double end;
+
+	rad = 0;
+	start = 0;
+	end = 0;
+	chk_x = 0.1 * all->dirx;
+	chk_y = 0.1 * all->diry;
+	while(rad - M_PI / 2 <= 2 * M_PI)
+	{
+		oldchk_x = chk_x;
+		chk_x = chk_x * cos(rad - M_PI / 2) - chk_y * sin(rad - M_PI / 2);
+		chk_y = oldchk_x * sin(rad - M_PI / 2) + chk_y * cos(rad - M_PI / 2);
+		if(all->map[(int)(all->posy + chk_y)][(int)(all->posx + chk_x)] != 'x')
+			break;
+		rad += 0.01;
+	}
+	if (all->posy + chk_y == w_posy && all->posy + chk_x == w_posx)
+		return (0);
+	return (1);
+}

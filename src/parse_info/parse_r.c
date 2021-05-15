@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/13 19:50:43 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 15:46:24 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int 		parse_r(char *line, t_info *parse_info)
 	{
 		if (ft_isdigit(*line))
 			line++;
-		else if (*line == '\0')
+		else if (*line == '\0' || *line == ' ')
 			break;
 		else
 			return (0); //parsing err
@@ -49,6 +49,8 @@ int 		parse_r(char *line, t_info *parse_info)
 	bottle = ft_split(start, ' '); // need free
 	parse_info->rw = bottle[1];
 	parse_info->rh = bottle[2];
+	if(bottle[3] != NULL)
+		return (0);
 	free(bottle);
 	return (1);
 }

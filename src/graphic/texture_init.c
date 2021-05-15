@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 16:33:47 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 21:08:35 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 16:08:07 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,34 @@ int		load_image(t_all *all, int *texture, char *path, t_img *img)
 	return (1);
 }
 
+int	 put_texture(t_all *all, t_info *parse_info, t_img	*img)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < texwidth)
+	{
+		while (j < texheight)
+		{
+			if(!(load_image(all, all->texture[0], parse_info->ea, img)))
+				return (0);
+			if(!(load_image(all, all->texture[1], parse_info->we, img)))
+				return (0);
+			if(!(load_image(all, all->texture[2], parse_info->so, img)))
+				return (0);
+			if(!(load_image(all, all->texture[3], parse_info->no, img)))
+				return (0);
+			if(!(load_image(all, all->texture[4], parse_info->s, img)))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int		texture_init(t_all *all, t_info *parse_info)
 {
 	int i;
@@ -39,12 +67,12 @@ int		texture_init(t_all *all, t_info *parse_info)
 	int res;
 	t_img	img;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	res = 1;
-	while (i < 7)
+	while (++i < 7)
 	{
-		while (j < texHeight * texWidth)
+		while (++j < texheight * texwidth)
 		{
 			all->texture[i][j++] = 0;
 		}
@@ -53,24 +81,7 @@ int		texture_init(t_all *all, t_info *parse_info)
 	}
 	i = 0;
 	j = 0;
-	while (i < texWidth)
-	{
-		while (j < texHeight)
-		{
-			res = load_image(all, all->texture[0], parse_info->ea, &img);
-			res = load_image(all, all->texture[1], parse_info->we, &img);
-			res = load_image(all, all->texture[2], parse_info->so, &img);
-			res = load_image(all, all->texture[3], parse_info->no, &img);
-			res = load_image(all, all->texture[4], parse_info->s, &img);
-				printf("res is %d\n", res);
-			if (res == 0)
-			{
-				return (0);
-			}
-			j++;
-		}
-		i++;
-	}
+	res = put_texture(all, parse_info, &img);
 	all->texture[5][0] = create_trgb(parse_info->f);
 	all->texture[6][0] = create_trgb(parse_info->c);
 	return (res);

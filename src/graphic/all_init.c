@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:32:13 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 20:08:39 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 18:50:48 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	all_init(t_all *all, t_info *parse_info)
 {
-	all->posX = parse_info->pos[0];
-	all->posY = parse_info->pos[1];
-	all->dirX = -1.0;
-	all->dirY = 0.0;
-	all->planeX = 0.0;
-	all->planeY = 0.66;
-	all->moveSpeed = 0.05;
-	all->rotSpeed = 0.05;
+	all->posx = parse_info->pos[0];
+	all->posy = parse_info->pos[1];
+	all->dirx = -1.0;
+	all->diry = 0.0;
+	all->planex = 0.0;
+	all->planey = 0.66;
+	rotation_pro(parse_info, all);
+	all->movespeed = 0.05;
+	all->rotspeed = 0.05;
 
 	all->mlx = mlx_init();
 

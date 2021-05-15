@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:56:51 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 20:38:51 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 15:29:08 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int 	parsing_all(t_info *parse_info, t_list *map_list, char ***map)
 	int 	res;
 
 	fd = open("map.cub", O_RDWR);
-
-	//info_check
 	while (get_next_line_arg(fd, &line, &res))
 	{
 		if ((res = parsing_info(line, parse_info)) == 0)
@@ -30,8 +28,6 @@ int 	parsing_all(t_info *parse_info, t_list *map_list, char ***map)
 			break; /* readAll */
 		free(line);
 	}
-
-	//map_check
 	while (1)
 	{
 		parsing_map(line, &map_list, parse_info);
@@ -47,7 +43,7 @@ int 	parsing_all(t_info *parse_info, t_list *map_list, char ***map)
 		return (0); /*map err*/
 	}
 	ft_lstclear(&map_list, free);
-	if (res == 0 && *map != NULL) //printf 없어야 통과함
+	if (res == 0 && *map != NULL)
 		return (1);				  /* eof */
 	return (0);					  /* get_next_line err */
 }

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 21:00:26 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 18:24:39 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 # define K_LF			123
 # define K_RT			124
 
-#define texWidth 64
-#define texHeight 64
+#define texwidth 64
+#define texheight 64
 
 typedef struct  s_info
 {
@@ -79,12 +79,12 @@ typedef struct	s_all
 	int			**buf;
 	char		**map;
 	
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
 
 	int			k_w;
 	int			k_s;
@@ -92,28 +92,28 @@ typedef struct	s_all
 	int			k_d;
 	int			k_lf;
 	int			k_rt;
-	int			texture[7][texHeight * texWidth];
-	double		moveSpeed;
-	double		rotSpeed;
+	int			texture[7][texheight * texwidth];
+	double		movespeed;
+	double		rotspeed;
 }				t_all;
 
 typedef struct s_calc
 {
-	double		cameraX;
-	double		rayDirX;
-	double		rayDirY;
-	int			mapX;
-	int			mapY;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	int stepX;
-	int stepY;
-	int hit;
-	int side;
-	int texNum;
+	double		camerax;
+	double		raydirx;
+	double		raydiry;
+	int			mapx;
+	int			mapy;
+	double		sidedistx;
+	double		sidedisty;
+	double		deltadistx;
+	double		deltadisty;
+	double		perpwalldist;
+	int 		stepx;
+	int 		stepy;
+	int 		hit;
+	int 		side;
+	int 		texnum;
 
 }				t_calc;
 
@@ -162,7 +162,7 @@ void	all_init(t_all *all, t_info *parse_info);
 void	malloc_buf(t_all *all);
 int		load_image(t_all *all, int *texture, char *path, t_img *img);
 int		texture_init(t_all *all, t_info *parse_info);
-int		make_texNum(t_all *all, int stepX, int stepY, int side);
+int		make_texnum(t_all *all, int stepx, int stepy, int side);
 
 int		main_loop(t_all *all);
 void	calc(t_all *all);
@@ -171,4 +171,6 @@ void	key_update(t_all *all);
 int		key_press(int key, t_all *all);
 int		key_release(int key, t_all *all);
 
+void	rotation_pro(t_info *parse_info, t_all *all);
+void	rotation(t_all *all, int degree);
 #endif

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 10:09:27 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 20:44:52 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 18:12:10 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	exam_map(char **map, int x, int y)
 		return (1);
 	if (map[y][x] == ' ')	
 		return (0);
-	map[y][x] = 'x';
+	if (map[y][x] != 'E' && map[y][x] != 'W' && map[y][x] != 'N' && map[y][x] != 'S')
+		map[y][x] = 'x';
 	i = -1;
 	while (++i < 8)
 		if (exam_map(map, x + g_dirx[i], y + g_diry[i]) == 0)

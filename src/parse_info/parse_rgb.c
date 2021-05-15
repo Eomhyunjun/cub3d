@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:32 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 20:32:26 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 15:44:31 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int 	parse_rgb(char *line, t_info *parse_info, int start)
 	if (line[0] == 'F' && line[1] == ' ')
 		parse_info->f = ft_strndup(line, start, i); // need free
 	else if (line[0] == 'C' && line[1] == ' ')
-		parse_info->c = ft_strndup(line, start, i); // need free'
+		parse_info->c = ft_strndup(line, start, i); // need free
+	while(line[i] == ' ')
+		i++;
+	if(line[i] != '\0')
+		return (0);
 	return (1);
 }
