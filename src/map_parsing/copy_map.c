@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 10:11:23 by heom              #+#    #+#             */
-/*   Updated: 2021/05/14 20:15:57 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/15 22:54:51 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int 	is_ok(char map_val, t_info *parse_info, int x, int y)
 		return (1);
 	else if (map_val == 'N' || map_val == 'S' || map_val == 'E' || map_val == 'W')
 	{
+		if (!(parse_info->pos[0] < 0))
+			return (0);
 		parse_info->dir = map_val;
 		parse_info->pos[0] = x;
 		parse_info->pos[1] = y;
