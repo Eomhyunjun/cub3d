@@ -4,7 +4,7 @@ NO ./src/texture/north.xpm
 SO ./src/texture/south.xpm
 WE ./src/texture/west.xpm
 EA ./src/texture/east.xpm
-S ./src/texture/east.xpm
+S ./src/texture/sprite.xpm
 F 110,153,15 
 C 255,255,255
 

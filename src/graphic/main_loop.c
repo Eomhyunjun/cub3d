@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:40:41 by heom              #+#    #+#             */
-/*   Updated: 2021/05/16 14:40:49 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/16 20:42:11 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,25 @@ int	main_loop(t_all *all)
 	draw(all);
 	key_update(all);
 	
-	printf("printf_map_in_all\n");
-	printf("====================================================\n");
-	int i = 0;
-	int j = 0;
-	while (all->map[i])
-	{
-		while(all->map[i][j])
-		{
-			if(i == (int)all->posy && j == (int)all->posx)
-				printf("|P|");
-			else
-				printf("|%c|", all->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		j = 0;
-		i++;
-	}
-	printf("====================================================\n");
+	// printf("printf_map_in_all\n");
+	// printf("====================================================\n");
+	// int i = 0;
+	// int j = 0;
+	// while (all->map[i])
+	// {
+	// 	while(all->map[i][j])
+	// 	{
+	// 		if(i == (int)all->posy && j == (int)all->posx)
+	// 			printf("|P|");
+	// 		else
+	// 			printf("|%c|", all->map[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	j = 0;
+	// 	i++;
+	// }
+	// printf("====================================================\n");
 	
 	return (0);
 }

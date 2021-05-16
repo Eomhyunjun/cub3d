@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:02:04 by heom              #+#    #+#             */
-/*   Updated: 2021/05/15 20:49:28 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/16 21:45:44 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	key_update(t_all *all)
 			all->posx += all->diry * all->movespeed;
 	}
 	if (all->k_lf)
-		rotation(all, all->rotspeed * 108 / M_PI);
+		rotation(all, all->rotspeed * 180 / M_PI);
 	if (all->k_rt)
-		rotation(all, -all->rotspeed * 108 / M_PI);
+		rotation(all, -all->rotspeed * 180 / M_PI);
 }

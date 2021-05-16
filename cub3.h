@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/16 16:37:17 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/16 21:32:31 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@
 # define K_LF			123
 # define K_RT			124
 
-#define texwidth 64
-#define texheight 64
-#define numSprites 1
+# define texwidth 64
+# define texheight 64
+# define SPRITE_NUM 1
 
 typedef struct  s_info
 {
