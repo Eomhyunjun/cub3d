@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/16 14:44:27 by heom             ###   ########.fr        #
+#    Updated: 2021/05/16 16:22:15 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,11 @@ SRCS = \
 	src/graphic/key_update.c \
 	src/graphic/make_texnum.c \
 	src/graphic/rotation.c \
+	src/graphic/calc.c \
+	src/graphic/calc_init.c \
+	src/graphic/set_step_side.c \
+	src/graphic/set_hit.c \
+	src/graphic/set_draw_point.c \
 
 all :
 	$(CC) $(CFLAGS) $(MAIN) $(UTILS) $(SRCS)

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/16 14:41:22 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/16 16:37:17 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 
 #define texwidth 64
 #define texheight 64
+#define numSprites 1
 
 typedef struct  s_info
 {
@@ -114,8 +115,11 @@ typedef struct s_calc
 	int 		hit;
 	int 		side;
 	int 		texnum;
-
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
 }				t_calc;
+
 
 /*
 --------------------- arg -------------------
@@ -159,14 +163,19 @@ int		get_b(int trgb);
 */
 int		mlx_process(t_info *parse_info, char **map);
 int		main_loop(t_all *all);
+
 void	all_init(t_all *all, t_info *parse_info);
 void	malloc_buf(t_all *all);
 int		load_image(t_all *all, int *texture, char *path, t_img *img);
 int		texture_init(t_all *all, t_info *parse_info);
 int		make_texnum(t_all *all, int stepx, int stepy, int side);
 
-int		main_loop(t_all *all);
 void	calc(t_all *all);
+void	calc_init(t_all *all, t_calc *cal, int x);
+void	set_step_side(t_all *all, t_calc *cal);
+void	set_hit(t_all *all, t_calc *cal);
+void	set_draw_point(t_all *all, t_calc *cal);
+
 void	draw(t_all *all);
 void	key_update(t_all *all);
 int		key_press(int key, t_all *all);
