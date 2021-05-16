@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/15 22:23:38 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/16 14:41:22 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ int		get_b(int trgb);
 --------------------- graphics -------------------
 */
 int		mlx_process(t_info *parse_info, char **map);
+int		main_loop(t_all *all);
 void	all_init(t_all *all, t_info *parse_info);
 void	malloc_buf(t_all *all);
 int		load_image(t_all *all, int *texture, char *path, t_img *img);

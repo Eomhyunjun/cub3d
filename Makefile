@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/15 18:24:40 by heom             ###   ########.fr        #
+#    Updated: 2021/05/16 14:44:27 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS = \
 	src/map_parsing/parsing_map.c \
 	\
 	src/graphic/mlx_process.c \
+	src/graphic/main_loop.c \
 	src/graphic/all_init.c \
 	src/graphic/malloc_buf.c \
 	src/graphic/texture_init.c \
