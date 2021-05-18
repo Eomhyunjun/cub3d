@@ -6,37 +6,35 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:40:41 by heom              #+#    #+#             */
-/*   Updated: 2021/05/16 20:42:11 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/18 14:05:14 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-int	main_loop(t_all *all)
+int		malloc_zbuf(t_all *all)
 {
+	double *buf;
+
+	if (!(buf = (double *)malloc(sizeof(double) * all->width)))
+		return (1);
+	buf = ft_memset((void *)buf, 0, all->width);
+	all->zbuf = buf;
+	return (0);
+}
+
+int		exit_loop(t_all *all)
+{
+	exit(0);
+	return (0);
+}
+
+int		main_loop(t_all *all)
+{
+	// if (malloc_zbuf(&all->zbuf, all->width))
+	// 	return (exit_loop(&t_all));
 	calc(all);
 	draw(all);
 	key_update(all);
-	
-	// printf("printf_map_in_all\n");
-	// printf("====================================================\n");
-	// int i = 0;
-	// int j = 0;
-	// while (all->map[i])
-	// {
-	// 	while(all->map[i][j])
-	// 	{
-	// 		if(i == (int)all->posy && j == (int)all->posx)
-	// 			printf("|P|");
-	// 		else
-	// 			printf("|%c|", all->map[i][j]);
-	// 		j++;
-	// 	}
-	// 	printf("\n");
-	// 	j = 0;
-	// 	i++;
-	// }
-	// printf("====================================================\n");
-	
 	return (0);
 }

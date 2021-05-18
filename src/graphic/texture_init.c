@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 16:33:47 by heom              #+#    #+#             */
-/*   Updated: 2021/05/16 21:44:35 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/16 22:05:05 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int		load_image(t_all *all, int *texture, char *path, t_img *img)
 {
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
 	img->img = mlx_xpm_file_to_image(all->mlx, path, &img->img_width, &img->img_height);
 	if (img->img == NULL)
 	{
@@ -21,12 +26,15 @@ int		load_image(t_all *all, int *texture, char *path, t_img *img)
 		return (0);
 	}
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	for (int y = 0; y < img->img_height; y++)
+	while (y < img->img_height)
 	{
-		for (int x = 0; x < img->img_width; x++)
+		while (x < img->img_width)
 		{
 			texture[img->img_width * y + x] = img->data[img->img_width * y + x];
+			x++;
 		}
+		y++;
+		x = 0;
 	}
 	mlx_destroy_image(all->mlx, img->img);
 	return (1);

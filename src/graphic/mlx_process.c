@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:28:48 by heom              #+#    #+#             */
-/*   Updated: 2021/05/16 14:42:51 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/17 16:23:47 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		mlx_process(t_info *parse_info, char **map)
 		return (0);
 	mlx_hook(all.win, X_EVENT_KEY_PRESS, 0, &key_press, &all);
 	mlx_hook(all.win, X_EVENT_KEY_RELEASE, 0, &key_release, &all);
+	mlx_hook(all.win, X_EVENT_KEY_EXIT, (1L << 17), &exit_loop, &all);
 	mlx_loop_hook(all.mlx, &main_loop, &all);
 	mlx_loop(all.mlx);
 	return (1);

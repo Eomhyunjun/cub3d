@@ -25,3 +25,27 @@ int		can_i_go(t_all *all, double w_posx, double w_posy)
 		return (0);
 	return (1);
 }
+
+
+print_map
+/*
+	printf("printf_map_in_all\n");
+	printf("====================================================\n");
+	int i = 0;
+	int j = 0;
+	while (all->map[i])
+	{
+		while(all->map[i][j])
+		{
+			if(i == (int)all->posy && j == (int)all->posx)
+				printf("|P|");
+			else
+				printf("|%c|", all->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		j = 0;
+		i++;
+	}
+	printf("====================================================\n");
+*/

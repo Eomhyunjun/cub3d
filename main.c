@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/16 16:23:30 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/17 15:47:55 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int			main(int argc, char **argv)
 	}
 	else if (argc == 3)
 	{
-		//save position
 		return (0);
 	}
-		return (0);
+	return (0);
 }
