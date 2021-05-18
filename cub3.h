@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/18 14:19:59 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/18 18:58:51 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@
 # define K_D			2
 # define K_LF			123
 # define K_RT			124
+#define numSprites 1
+
 
 # define texwidth 64
 # define texheight 64
+
 
 
 typedef struct	s_sprite
@@ -51,8 +54,11 @@ typedef struct	s_sprite
 	double			centerx;
 	double			depth_unit;
 	double			dist;
+	double			draw_start;
+	double			draw_end;
+	double			tex_scale;
+	double			tex_step;
 }				t_sprite;
-
 
 typedef struct  s_info
 {
@@ -70,6 +76,7 @@ typedef struct  s_info
 	int			cols;
 	char		dir;
 	int			pos[2];
+	int			spr_num;
 }				t_info;
 
 typedef struct	s_img {
@@ -111,7 +118,8 @@ typedef struct	s_all
 	double		movespeed;
 	double		rotspeed;
 
-	t_list		*sprite;
+	int			spr_num;
+	int			spr_cnt;
 	double		*zbuf;
 }				t_all;
 
@@ -185,32 +193,38 @@ int		get_b(int trgb);
 /*
 --------------------- graphics -------------------
 */
-int		mlx_process(t_info *parse_info, char **map);
-int		main_loop(t_all *all);
-int		exit_loop(t_all *all);
+int			mlx_process(t_info *parse_info, char **map);
+int			main_loop(t_all *all);
+int			exit_loop(t_all *all);
 
-void	all_init(t_all *all, t_info *parse_info);
-void	malloc_buf(t_all *all);
-void	put_wall_buf(t_all *all,t_calc *cal, int x);
-void	put_back_buf(t_all *all, int x);
-int		load_image(t_all *all, int *texture, char *path, t_img *img);
-int		texture_init(t_all *all, t_info *parse_info);
-int		make_texnum(t_all *all, int stepx, int stepy, int side);
+void		all_init(t_all *all, t_info *parse_info);
+void		malloc_buf(t_all *all);
+void		put_wall_buf(t_all *all,t_calc *cal, int x);
+void		put_back_buf(t_all *all, int x);
+int			load_image(t_all *all, int *texture, char *path, t_img *img);
+int			texture_init(t_all *all, t_info *parse_info);
+int			make_texnum(t_all *all, int stepx, int stepy, int side);
 
-void	calc(t_all *all);
-void	calc_init(t_all *all, t_calc *cal, int x);
-void	set_step_side(t_all *all, t_calc *cal);
-void	set_hit(t_all *all, t_calc *cal);
-void	set_draw_point(t_all *all, t_calc *cal);
-void	set_tex_point(t_all *all, t_calc *cal);
+void		calc(t_all *all);
+void		calc_init(t_all *all, t_calc *cal, int x);
+void		set_step_side(t_all *all, t_calc *cal);
+void		set_hit(t_all *all, t_calc *cal, t_sprite *spr);
+void		set_draw_point(t_all *all, t_calc *cal, int x);
+void		set_tex_point(t_all *all, t_calc *cal);
 
-void	draw(t_all *all);
-void	key_update(t_all *all);
-int		key_press(int key, t_all *all);
-int		key_release(int key, t_all *all);
+void		draw(t_all *all);
+void		key_update(t_all *all);
+int			key_press(int key, t_all *all);
+int			key_release(int key, t_all *all);
 
-void	rotation_pro(t_info *parse_info, t_all *all);
-void	rotation(t_all *all, int degree);
+void		rotation_pro(t_info *parse_info, t_all *all);
+void		rotation(t_all *all, int degree);
 
-int		malloc_zbuf(t_all *all);
+
+int			malloc_zbuf(t_all *all);
+t_sprite	*sprite_init(t_all *all);
+void		tmp_sprite(t_all *all, t_calc *cal, t_sprite *spr);
+void		set_coef(t_all *all, t_sprite *spr);
+void		sort_spr(t_all *all, t_sprite *spr, int spr_num);
+int			is_x_here(t_all *all, t_calc *cal, t_sprite *spr);
 #endif

@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/18 13:19:04 by heom             ###   ########.fr        #
+#    Updated: 2021/05/18 18:02:36 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS = \
 	src/map_parsing/copy_map.c \
 	src/map_parsing/parsing_map.c \
 	\
+	src/graphic/set.c \
 	src/graphic/mlx_process.c \
 	src/graphic/main_loop.c \
 	src/graphic/init.c \
@@ -50,7 +51,8 @@ SRCS = \
 	src/graphic/make_texnum.c \
 	src/graphic/rotation.c \
 	src/graphic/calc.c \
-	src/graphic/set.c \
+	src/graphic/sprite.c \
+	
 
 all :
 	$(CC) $(CFLAGS) $(MAIN) $(UTILS) $(SRCS)

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:32:13 by heom              #+#    #+#             */
-/*   Updated: 2021/05/18 14:07:29 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/18 19:08:39 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	all_init(t_all *all, t_info *parse_info)
 	rotation_pro(parse_info, all);
 	all->movespeed = 0.05;
 	all->rotspeed = 0.05;
+	all->spr_num = parse_info->spr_num;
 	all->mlx = mlx_init();
 	all->width = ft_atoi(parse_info->rw);
 	all->height = ft_atoi(parse_info->rh);
@@ -52,4 +53,13 @@ void	calc_init(t_all *all, t_calc *cal, int x)
 	else
 		cal->deltadisty = fabs(1 / cal->raydiry);
 	cal->hit = 0;
+}
+
+t_sprite	*sprite_init(t_all *all)
+{
+	t_sprite *tmp;
+	if (!(tmp = (t_sprite *)malloc(sizeof(t_sprite) * (all->spr_num + 1))))
+		return (NULL);
+	ft_bzero(tmp, sizeof(t_sprite));
+	return (tmp);
 }

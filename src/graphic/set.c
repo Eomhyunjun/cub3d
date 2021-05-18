@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:20:04 by heom              #+#    #+#             */
-/*   Updated: 2021/05/18 14:21:01 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/18 19:05:45 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void	set_step_side(t_all *all, t_calc *cal)
 		}
 }
 
-void	set_hit(t_all *all, t_calc *cal)
+
+void	set_hit(t_all *all, t_calc *cal, t_sprite *spr)
 {
+	int res;
 	while (cal->hit == 0)
 	{
 		if (cal->sidedistx < cal->sidedisty)
@@ -52,21 +54,23 @@ void	set_hit(t_all *all, t_calc *cal)
 			cal->mapy += cal->stepy;
 			cal->side = 1;
 		}
-		// if (all->map[cal->mapy][cal->mapx] == '2')
-		// 	tmp_sprite(all, cal, sprtie_list);
+		if (all->map[cal->mapy][cal->mapx] == '2')
+		{
+			if ((res = is_x_here(all, cal, spr)))
+				tmp_sprite(all, cal, spr);
+		}
 		if (all->map[cal->mapy][cal->mapx] == '1')
 			cal->hit = 1;
 	}
 }
 
-void	set_draw_point(t_all *all, t_calc *cal)
+void	set_draw_point(t_all *all, t_calc *cal, int x)
 {
 	if (cal->side == 0)
 		cal->perpwalldist = (cal->mapx - all->posx + (1 - cal->stepx) / 2) / cal->raydirx;
 	else
 		cal->perpwalldist = (cal->mapy - all->posy + (1 - cal->stepy) / 2) / cal->raydiry;
-	// all->zBuffer = cal->perpwalldist;
-	// all->zBuffer++;
+	
 	cal->lineheight = (int)(all->height / cal->perpwalldist);
 	if (cal->perpwalldist <= 0.01 && cal->perpwalldist >= -0.01)
 		cal->lineheight = 0;
@@ -76,6 +80,7 @@ void	set_draw_point(t_all *all, t_calc *cal)
 	cal->drawend = cal->lineheight / 2 + all->height / 2;
 	if(cal->drawend >= all->height)
 		cal->drawend = all->height - 1;
+	all->zbuf[x] = cal->perpwalldist;
 }
 
 void	set_tex_point(t_all *all, t_calc *cal)

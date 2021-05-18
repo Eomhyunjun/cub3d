@@ -1,5 +1,4 @@
 R 1200 1200
-
 NO ./src/texture/north.xpm
 SO ./src/texture/south.xpm
 WE ./src/texture/west.xpm

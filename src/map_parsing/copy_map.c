@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 10:11:23 by heom              #+#    #+#             */
-/*   Updated: 2021/05/15 22:54:51 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/18 16:34:13 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int 	is_ok(char map_val, t_info *parse_info, int x, int y)
 {
-	if (map_val == ' ' || map_val == '0' || map_val == '1' || map_val == '2')
+	if (map_val == ' ' || map_val == '0' || map_val == '1')
 		return (1);
 	else if (map_val == 'N' || map_val == 'S' || map_val == 'E' || map_val == 'W')
 	{
@@ -23,6 +23,11 @@ int 	is_ok(char map_val, t_info *parse_info, int x, int y)
 		parse_info->dir = map_val;
 		parse_info->pos[0] = x;
 		parse_info->pos[1] = y;
+		return (1);
+	}
+	else if (map_val == '2')
+	{
+		parse_info->spr_num++;
 		return (1);
 	}
 	return (0);

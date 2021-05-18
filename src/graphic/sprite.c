@@ -6,41 +6,45 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:34:30 by heom              #+#    #+#             */
-/*   Updated: 2021/05/18 14:02:06 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/18 19:10:00 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-void	tmp_sprite(t_all all, t_cal cal, t_list *sprtie_list)
+int		is_x_here(t_all *all, t_calc *cal, t_sprite *spr)
 {
-	char spr_point[2];
-	spr_point[0] = cal->mapx + 0.5;
-	spr_point[1] = cal->mapy + 0.5;
+	int i;
 
-	all->sprite->content = spr_point;
-	ft_lstadd_back(&sprtie_list, ft_lstnew(all->sprite));
+	i = 0;
+	while (i < all->spr_num)
+	{
+		if(spr[i].x == cal->mapx && spr[i].y == cal->mapy)
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
-void	set_coef(t_all all, t_sprite *sprite)
+void	set_coef(t_all *all, t_sprite *spr)
 {
-	sprite->coefx = all->diry * sprite->distx - all->dirx * sprite->disty;
-	sprite->coefy = -all->planey * sprite->distx + all->planex * sprite->disty;
-	sprite->coefx /= (all->planex* all->diry - all->dirx * all->planey);
-	sprite->coefy /= (all->planex* all->diry - all->dirx * all->planey);
+	spr[all->spr_cnt].coefx = all->diry * spr[all->spr_cnt].distx - all->dirx * spr[all->spr_cnt].disty;
+	spr[all->spr_cnt].coefy = -all->planey * spr[all->spr_cnt].distx + all->planex * spr[all->spr_cnt].disty;
+	spr[all->spr_cnt].coefx /= (all->planex* all->diry - all->dirx * all->planey);
+	spr[all->spr_cnt].coefy /= (all->planex* all->diry - all->dirx * all->planey);
+	all->spr_cnt++;
 }
 
-
-
-void	set_sprite(t_all *all, t_calc *cal)
+void	tmp_sprite(t_all *all, t_calc *cal, t_sprite *spr)
 {
-	t_sprite	sprite;
-	
-	sprite.dist_x =sprite.x - all->posx;
-	sprite.dist_y =sprite.y - all->posy;
-	set_coef(all, &sprite);
-	sprite.centerx = sprtie.dist_x * all->width / 2;
-	sprite.depth_unit = sprite.centerx * sprite.coefx / sprite.coefy;
-	sprite.dist = sprtie.distx * sprite.distx + sprite.disty * sprite.disty;
-	all->sprite = &sprite;
+	spr[all->spr_cnt].x = cal->mapx;
+	spr[all->spr_cnt].y = cal->mapy;
+	spr[all->spr_cnt].distx =spr[all->spr_cnt].x - all->posx;
+	spr[all->spr_cnt].disty =spr[all->spr_cnt].y - all->posy;
+	set_coef(all, spr);
+	spr[all->spr_cnt].centerx = spr[all->spr_cnt].distx * all->width / 2;
+	spr[all->spr_cnt].depth_unit = spr[all->spr_cnt].centerx * spr[all->spr_cnt].coefx / spr[all->spr_cnt].coefy;
+	spr[all->spr_cnt].dist = spr[all->spr_cnt].distx * spr[all->spr_cnt].distx + spr[all->spr_cnt].disty * spr[all->spr_cnt].disty;
 }

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:46:44 by heom              #+#    #+#             */
-/*   Updated: 2021/05/18 14:28:09 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/18 14:35:11 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	put_wall_buf(t_all *all,t_calc *cal, int x)
 				cal->color = (cal->color >> 1) & 8355711;
 			all->buf[y][x] = cal->color;
 		}
-		//all->zbuf[x] = cal->perpwalldist;
+		all->zbuf[x] = cal->perpwalldist;
 }
 
 void	malloc_buf(t_all *all)
