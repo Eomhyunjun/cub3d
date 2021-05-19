@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/18 18:58:51 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/19 16:38:09 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ typedef struct	s_sprite
 	double			coefy;
 	double			centerx;
 	double			depth_unit;
-	double			dist;
-	double			draw_start;
-	double			draw_end;
+	double			real_depth;
+	double			size;
+	double			drawstart;
+	double			drawend;
 	double			tex_scale;
 	double			tex_step;
 }				t_sprite;
@@ -223,7 +224,7 @@ void		rotation(t_all *all, int degree);
 
 int			malloc_zbuf(t_all *all);
 t_sprite	*sprite_init(t_all *all);
-void		tmp_sprite(t_all *all, t_calc *cal, t_sprite *spr);
+void		set_sprite(t_all *all, t_calc *cal, t_sprite *spr);
 void		set_coef(t_all *all, t_sprite *spr);
 void		sort_spr(t_all *all, t_sprite *spr, int spr_num);
 int			is_x_here(t_all *all, t_calc *cal, t_sprite *spr);

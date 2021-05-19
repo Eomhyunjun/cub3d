@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:32:13 by heom              #+#    #+#             */
-/*   Updated: 2021/05/18 19:08:39 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/19 16:06:25 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	calc_init(t_all *all, t_calc *cal, int x)
 t_sprite	*sprite_init(t_all *all)
 {
 	t_sprite *tmp;
-	if (!(tmp = (t_sprite *)malloc(sizeof(t_sprite) * (all->spr_num + 1))))
+	if (!(tmp = (t_sprite *)malloc(sizeof(t_sprite) * (all->spr_num))))
 		return (NULL);
 	ft_bzero(tmp, sizeof(t_sprite));
 	return (tmp);

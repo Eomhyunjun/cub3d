@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:34:30 by heom              #+#    #+#             */
-/*   Updated: 2021/05/18 19:10:00 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/19 21:07:05 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,39 @@ int		is_x_here(t_all *all, t_calc *cal, t_sprite *spr)
 	i = 0;
 	while (i < all->spr_num)
 	{
-		if(spr[i].x == cal->mapx && spr[i].y == cal->mapy)
-		{
-			return (0);
-		}
+		if(spr[i].x == (int)cal->mapx && spr[i].y == (int)cal->mapy)
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 void	set_coef(t_all *all, t_sprite *spr)
 {
-	spr[all->spr_cnt].coefx = all->diry * spr[all->spr_cnt].distx - all->dirx * spr[all->spr_cnt].disty;
-	spr[all->spr_cnt].coefy = -all->planey * spr[all->spr_cnt].distx + all->planex * spr[all->spr_cnt].disty;
-	spr[all->spr_cnt].coefx /= (all->planex* all->diry - all->dirx * all->planey);
-	spr[all->spr_cnt].coefy /= (all->planex* all->diry - all->dirx * all->planey);
+	spr->coefx = all->diry * spr->distx - all->dirx * spr->disty;
+	spr->coefy = -all->planey * spr->distx + all->planex * spr->disty;
+	spr->coefx /= (all->planex * all->diry - all->dirx * all->planey);
+	spr->coefy /= (all->planex * all->diry - all->dirx * all->planey);
 	all->spr_cnt++;
 }
 
-void	tmp_sprite(t_all *all, t_calc *cal, t_sprite *spr)
+void	set_sprite(t_all *all, t_calc *cal, t_sprite *spr)
 {
-	spr[all->spr_cnt].x = cal->mapx;
-	spr[all->spr_cnt].y = cal->mapy;
-	spr[all->spr_cnt].distx =spr[all->spr_cnt].x - all->posx;
-	spr[all->spr_cnt].disty =spr[all->spr_cnt].y - all->posy;
+	spr->x = (int)cal->mapx;
+	spr->y = (int)cal->mapy;
+	spr->distx =spr->x - all->posx;
+	spr->disty =spr->y - all->posy;
 	set_coef(all, spr);
-	spr[all->spr_cnt].centerx = spr[all->spr_cnt].distx * all->width / 2;
-	spr[all->spr_cnt].depth_unit = spr[all->spr_cnt].centerx * spr[all->spr_cnt].coefx / spr[all->spr_cnt].coefy;
-	spr[all->spr_cnt].dist = spr[all->spr_cnt].distx * spr[all->spr_cnt].distx + spr[all->spr_cnt].disty * spr[all->spr_cnt].disty;
+	spr->centerx = (spr->coefx/spr->coefy + 1) * all->width / 2;
+	spr->depth_unit = fabs(spr->coefx / spr->coefy);
+	spr->real_depth = spr->coefx / spr->depth_unit;
+	spr->size = all->height / spr->real_depth;
+	spr->drawstart = spr->centerx - spr->size / 2;
+	spr->drawend = spr->centerx + spr->size /2;
+	if (spr->drawstart < 0)
+		spr->drawstart = 0;
+	if (spr->drawend < 0)
+		spr->drawend = 0;
+	spr->tex_scale = spr->size / texwidth;
+	spr->tex_step = 1.0 / spr->tex_scale;
 }
