@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:21:42 by heom              #+#    #+#             */
-/*   Updated: 2021/05/19 20:56:32 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/21 19:48:33 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,30 @@ void sort_spr(t_all *all, t_sprite *spr, int spr_num)
 {
 	int i;
 	int j;
-	int k;
-	t_sprite *temp;
+	t_sprite temp;
 
 	i = 0;
 	j = 0;
-	k = 0;
-	while (k < all->spr_num)
+	while (j < all->spr_num - 1)
 	{
-		while (i < all->spr_num)
+		while (i < all->spr_num - j - 1)
 		{
-			while (j < i)
+			if(spr[i].real_depth < spr[i + 1].real_depth)
 			{
-				if(spr[k].disty > spr[k+1].disty)
-				{
-					temp = &spr[k];
-					spr[k] = spr[k+1];
-					spr[k+1] = *temp;
-				}
-				j++;
+				temp = spr[i];
+				spr[i] = spr[i+1];
+				spr[i+1] = temp;
 			}
-			j = 0;
 			i++;
 		}
-		k++;
+		i = 0;
+		j++;
 	}
-	printf("spr[0] x : %f, y : %f , distx : %f, disty : %f, coefx : %f, coefy : %f, depth_unit : %f, centerx : %f\n", spr[0].x, spr[0].y, spr[0].distx, spr[0].disty, spr[0].coefx, spr[0].coefy, spr[0].depth_unit, spr[0].centerx);
-	printf("spr[1] x : %f, y : %f , distx : %f, disty : %f, coefx : %f, coefy : %f, depth_unit : %f, centerx : %f\n", spr[1].x, spr[1].y, spr[1].distx, spr[1].disty, spr[1].coefx, spr[1].coefy, spr[1].depth_unit, spr[1].centerx);
-	printf("spr[2] x : %f, y : %f , distx : %f, disty : %f, coefx : %f, coefy : %f, depth_unit : %f, centerx : %f\n", spr[2].x, spr[2].y, spr[2].distx, spr[2].disty, spr[2].coefx, spr[2].coefy, spr[2].depth_unit, spr[2].centerx);
+
+	// for(int i = 0; i < all->spr_num; i++)
+	// {
+	// printf("before : spr[%d] length : %f, x : %f, y : %f , distx : %f, disty : %f, coefx : %f, coefy : %f, depth_unit : %f, centerx : %f\n",i, spr[i].real_depth, spr[i].x, spr[i].y, spr[i].distx, spr[i].disty, spr[i].coefx, spr[i].coefy, spr[i].depth_unit, spr[i].centerx);
+	// }
 }
 
 void	draw_sprite(t_all *all,t_sprite *spr,int x,int spr_x)
@@ -68,7 +64,7 @@ void	draw_sprite(t_all *all,t_sprite *spr,int x,int spr_x)
 		if (x < all->width && y < all->height && \
 				pixel < pow(texheight, 2))
 		{
-			if (all->texture[4][pixel] != ' ')
+			if (all->texture[4][pixel] & 0x00FFFFFF)
 				all->buf[y][x] = all->texture[4][pixel];
 		}
 	}
@@ -101,10 +97,10 @@ void	calc(t_all *all)
 
 	x = 0;
 	spr = sprite_init(all);
+	all->spr_cnt = 0;
 	//printf("width : %d height : %d\nposx : %f, posy : %f \n dirx : %f, diry : %f\nplanex : %f, planey : %f\n\n", all->width, all->height, all->posx, all->posy, all->dirx, all->diry, all->planex, all->planey);
 	while (x < all->width)
 	{
-		all->spr_cnt = 0;
 		calc_init(all, &cal, x);
 		set_step_side(all, &cal);
 		set_hit(all, &cal, spr);
@@ -114,6 +110,7 @@ void	calc(t_all *all)
 		put_wall_buf(all, &cal, x);
 		x++;
 	}
+	printf("hihi : %d\n", all->spr_cnt);
 	sort_spr(all, spr, all->spr_num);
 	for(int i = 0; i < all->spr_num; i++)
 		put_spr_buf(all, &spr[i]);

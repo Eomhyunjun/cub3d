@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:20:04 by heom              #+#    #+#             */
-/*   Updated: 2021/05/19 20:58:28 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/21 19:46:40 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ void	set_hit(t_all *all, t_calc *cal, t_sprite *spr)
 		if (all->map[cal->mapy][cal->mapx] == '2')
 		{
 			if (!(res = is_x_here(all, cal, spr)))
+			{
 				set_sprite(all, cal, &spr[all->spr_cnt]);
+			}
 		}
 		if (all->map[cal->mapy][cal->mapx] == '1')
 			cal->hit = 1;
