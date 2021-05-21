@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:21:42 by heom              #+#    #+#             */
-/*   Updated: 2021/05/21 20:00:44 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/21 21:12:19 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	calc(t_all *all)
 	x = 0;
 	spr = sprite_init(all);
 	all->spr_cnt = 0;
-	//printf("width : %d height : %d\nposx : %f, posy : %f \n dirx : %f, diry : %f\nplanex : %f, planey : %f\n\n", all->width, all->height, all->posx, all->posy, all->dirx, all->diry, all->planex, all->planey);
 	while (x < all->width)
 	{
 		calc_init(all, &cal, x);
@@ -109,7 +108,6 @@ void	calc(t_all *all)
 		put_wall_buf(all, &cal, x);
 		x++;
 	}
-	printf("hihi : %d\n", all->spr_cnt);
 	sort_spr(all, spr, all->spr_num);
 	for(int i = 0; i < all->spr_num; i++)
 		put_spr_buf(all, &spr[i]);

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*   print_err.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 10:14:32 by heom              #+#    #+#             */
-/*   Updated: 2021/05/22 00:45:19 by heom             ###   ########.fr       */
+/*   Created: 2021/05/21 21:19:03 by heom              #+#    #+#             */
+/*   Updated: 2021/05/21 22:55:22 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3.h"
+#include "../cub3.h"
 
-void 	parsing_map(char *line, t_list **map_list, t_info *parse_info)
+int		print_err(char *str)
 {
-	int len;
-
-	len = ft_strlen(line);
-	if (parse_info->longlen < len)
-		parse_info->longlen = len;
-	ft_lstadd_back(map_list, ft_lstnew(line));
+	printf("%s\n", str);
+	return (0);
 }

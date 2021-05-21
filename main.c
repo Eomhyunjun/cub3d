@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/17 15:47:55 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/21 22:08:39 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int			main(int argc, char **argv)
 	t_info	parse_info;
 	t_list	*map_list;
 
+	if (!(argc >= 2 && !ft_strncmpr(argv[1], ".cub", 4)))
+		return (print_err("map name is invalid."));
 	if (argc == 2)
 	{
 		res = 0;
@@ -27,18 +29,9 @@ int			main(int argc, char **argv)
 		parse_info.pos[0] = -1;
 		map_list = NULL;
 		if (!(res = parsing_all(&parse_info, map_list, &map, argv[1])))
-		{
-			printf("error\n Invalid value in map pile");
-			return (0);
-		}
-		if (res == 0)
-			printf("error\n parsing_info duple err\n");
+			return (print_err("error\n Invalid value in map pile"));
 		res = mlx_process(&parse_info, map);
 		split_free(map);
-	}
-	else if (argc == 3)
-	{
-		return (0);
 	}
 	return (0);
 }

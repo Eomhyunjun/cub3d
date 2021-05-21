@@ -6,15 +6,16 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:26:53 by heom              #+#    #+#             */
-/*   Updated: 2021/05/09 16:10:03 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/22 00:18:35 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-int 	dup_check(char *line, t_info *parse_info)
+int		dup_check(char *line, t_info *parse_info)
 {
 	int res;
+
 	res = 1;
 	if (line[0] == 'R' && parse_info->dup[0] == 0)
 		parse_info->dup[0] = 1;

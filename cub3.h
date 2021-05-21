@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/19 16:38:09 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/22 00:44:48 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,11 +160,12 @@ typedef struct s_calc
 int				get_next_line_arg(int fd, char **line, int *res);
 int				parsing_all(t_info  *parse_info, t_list  *map_list, char ***map, char *argv);
 void			split_free(char **bottle);
-
+int				print_err(char *str);
 
 /*
 --------------------- parsing_info -------------------
 */
+int				info_check(int fd, char **line, t_info *parse_info);
 int				parsing_info(char *line, t_info *parse_info);
 int				parse_r(char *line, t_info *parse_info);
 int				parse_news(char *line, t_info *parse_info, int start);

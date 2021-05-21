@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 16:06:24 by yekim             #+#    #+#             */
-/*   Updated: 2021/05/03 15:50:46 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/21 21:56:47 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strnstr(const char *haystack, const char *needle, size_t n);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_strncmpr(const char *s1, const char *s2, size_t n);
 int				ft_atoi(const char *nptr);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);

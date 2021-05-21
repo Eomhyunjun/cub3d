@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*   info_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 10:14:32 by heom              #+#    #+#             */
-/*   Updated: 2021/05/22 00:45:19 by heom             ###   ########.fr       */
+/*   Created: 2021/05/22 00:22:34 by heom              #+#    #+#             */
+/*   Updated: 2021/05/22 00:45:07 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-void 	parsing_map(char *line, t_list **map_list, t_info *parse_info)
+int		info_check(int fd, char **line, t_info *parse_info)
 {
-	int len;
+	int i;
+	int res;
 
-	len = ft_strlen(line);
-	if (parse_info->longlen < len)
-		parse_info->longlen = len;
-	ft_lstadd_back(map_list, ft_lstnew(line));
+	i = 0;
+	res = 0;
+	while (get_next_line_arg(fd, line, &res))
+	{
+		if ((res = parsing_info(*line, parse_info)) == 0)
+			return (0); /* duple err */
+		if (res == 2)
+			break; /* readAll */
+		free(*line);
+	}
+	while (i < 9)
+		if (parse_info->dup[i++] != 1)
+			return (0);
+	return (1);
 }
