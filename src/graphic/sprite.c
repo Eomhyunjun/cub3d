@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:34:30 by heom              #+#    #+#             */
-/*   Updated: 2021/05/21 19:39:26 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/21 20:03:30 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,9 @@ void	set_sprite(t_all *all, t_calc *cal, t_sprite *spr)
 	spr->centerx = (spr->coefx/spr->coefy + 1) * all->width / 2;
 	spr->depth_unit = fabs(spr->coefx / spr->coefy);
 	spr->real_depth = fabs(spr->coefx / spr->depth_unit);
-	spr->size = all->height / spr->real_depth;
+	spr->size = (int)(all->height / spr->real_depth / 2);
 	spr->drawstart = spr->centerx - spr->size / 2;
 	spr->drawend = spr->centerx + spr->size /2;
-	if (spr->drawstart < 0)
-		spr->drawstart = 0;
-	if (spr->drawend < 0)
-		spr->drawend = 0;
 	spr->tex_scale = spr->size / texwidth;
 	spr->tex_step = 1.0 / spr->tex_scale;
 }

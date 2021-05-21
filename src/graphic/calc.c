@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:21:42 by heom              #+#    #+#             */
-/*   Updated: 2021/05/21 19:48:33 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/21 20:00:44 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,10 @@ void	draw_sprite(t_all *all,t_sprite *spr,int x,int spr_x)
 	while (++y < center + spr->size / 2)
 	{
 		++spr_y;
-		dot = (int)(x + all->width * y);
 		pixel = (int)(spr_x * spr->tex_step) + \
 				(int)(spr_y * spr->tex_step) * texheight;
 		if (x < all->width && y < all->height && \
-				pixel < pow(texheight, 2))
+				pixel < texheight * texwidth)
 		{
 			if (all->texture[4][pixel] & 0x00FFFFFF)
 				all->buf[y][x] = all->texture[4][pixel];
@@ -75,7 +74,7 @@ void	put_spr_buf(t_all *all, t_sprite *spr)
 	int x;
 	int spr_x;
 
-	x = spr->drawstart - 1;
+	x = -1;
 	while (++x < all->width)
 	{
 		if (x >= spr->drawstart && x <= spr->drawend)
