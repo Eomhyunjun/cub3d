@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:21:42 by heom              #+#    #+#             */
-/*   Updated: 2021/05/21 21:12:19 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/22 06:37:22 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void sort_spr(t_all *all, t_sprite *spr, int spr_num)
 	int j;
 	t_sprite temp;
 
-	i = 0;
 	j = 0;
 	while (j < all->spr_num - 1)
 	{
+		i = 0;
 		while (i < all->spr_num - j - 1)
 		{
 			if(spr[i].real_depth < spr[i + 1].real_depth)
@@ -32,14 +32,14 @@ void sort_spr(t_all *all, t_sprite *spr, int spr_num)
 			}
 			i++;
 		}
-		i = 0;
 		j++;
 	}
 
-	// for(int i = 0; i < all->spr_num; i++)
-	// {
-	// printf("before : spr[%d] length : %f, x : %f, y : %f , distx : %f, disty : %f, coefx : %f, coefy : %f, depth_unit : %f, centerx : %f\n",i, spr[i].real_depth, spr[i].x, spr[i].y, spr[i].distx, spr[i].disty, spr[i].coefx, spr[i].coefy, spr[i].depth_unit, spr[i].centerx);
-	// }
+	for(int i = 0; i < all->spr_num; i++)
+	{
+		printf("%d, %lf\n", i, spr[i].real_depth);
+	//rintf("before : spr[%d] length : %f, x : %f, y : %f , distx : %f, disty : %f, coefx : %f, coefy : %f, depth_unit : %f, centerx : %f\n",i, spr[i].real_depth, spr[i].x, spr[i].y, spr[i].distx, spr[i].disty, spr[i].coefx, spr[i].coefy, spr[i].depth_unit, spr[i].centerx);
+	}
 }
 
 void	draw_sprite(t_all *all,t_sprite *spr,int x,int spr_x)
@@ -80,7 +80,7 @@ void	put_spr_buf(t_all *all, t_sprite *spr)
 		if (x >= spr->drawstart && x <= spr->drawend)
 		{
 			spr_x = x - spr->drawstart;
-			if (all->zbuf[x] > spr->coefy && spr_x > 0)
+			if (all->zbuf[x] > spr->coefy && spr_x > 0 && x < all->width && spr->coefy > 0 )
 				draw_sprite(all, spr, x, spr_x);
 		}
 	}
