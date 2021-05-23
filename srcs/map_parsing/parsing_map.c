@@ -6,13 +6,13 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 10:14:32 by heom              #+#    #+#             */
-/*   Updated: 2021/05/22 00:45:19 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 20:50:38 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-void 	parsing_map(char *line, t_list **map_list, t_info *parse_info)
+void	parsing_map(char *line, t_list **map_list, t_info *parse_info)
 {
 	int len;
 

@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 20:41:19 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 21:01:33 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "utils/gnl/get_next_line.h"
 # include "utils/libft/libft.h"
 # include "mlx/mlx.h"
-
+# include "get_screen/mlx_custom.h"
 
 # define X_EVENT_KEY_PRESS	2
 # define X_EVENT_KEY_RELEASE 3
@@ -153,6 +153,9 @@ typedef struct s_calc
 	double		texpos;
 }				t_calc;
 
+
+
+int	mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
 /*
 --------------------- arg -------------------

@@ -6,17 +6,18 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 10:11:23 by heom              #+#    #+#             */
-/*   Updated: 2021/05/19 21:04:44 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 20:51:18 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-int 	is_ok(char map_val, t_info *parse_info, int x, int y)
+int		is_ok(char map_val, t_info *parse_info, int x, int y)
 {
 	if (map_val == ' ' || map_val == '0' || map_val == '1')
 		return (1);
-	else if (map_val == 'N' || map_val == 'S' || map_val == 'E' || map_val == 'W')
+	else if (map_val == 'N' || map_val == 'S' || \
+				map_val == 'E' || map_val == 'W')
 	{
 		if (!(parse_info->pos[0] < 0))
 			return (0);
@@ -33,11 +34,11 @@ int 	is_ok(char map_val, t_info *parse_info, int x, int y)
 	return (0);
 }
 
-int 	copy_map(t_list *map_list, char **map, t_info *parse_info, int y)
+int		copy_map(t_list *map_list, char **map, t_info *parse_info, int y)
 {
-	int x;
-	x = 0;
+	int	x;
 
+	x = 0;
 	(*map)[x++] = ' ';
 	while (map_list->content[x - 1])
 	{

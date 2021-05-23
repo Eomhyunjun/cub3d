@@ -6,13 +6,27 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:32:13 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 13:36:42 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 21:43:59 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-void	all_init(t_all *all, t_info *parse_info)
+void		put_srceen_size(t_all *all, t_info *parse_info)
+{
+	int sizex;
+	int sizey;
+
+	mlx_get_screen_size(all->mlx, &sizex, &sizey);
+	if (parse_info->rw >= sizex)
+		parse_info->rw = sizex;
+	if (parse_info->rh >= sizey)
+		parse_info->rh = sizey;
+	all->width = parse_info->rw;
+	all->height = parse_info->rh;
+}
+
+void		all_init(t_all *all, t_info *parse_info)
 {
 	all->posx = parse_info->pos[0];
 	all->posy = parse_info->pos[1];
@@ -25,15 +39,14 @@ void	all_init(t_all *all, t_info *parse_info)
 	all->rotspeed = 0.05;
 	all->spr_num = parse_info->spr_num;
 	all->mlx = mlx_init();
-	all->width = parse_info->rw;
-	all->height = parse_info->rh;
+	put_srceen_size(all, parse_info);
 	all->win = mlx_new_window(all->mlx, all->width, all->height, "my_cub3");
 	all->img.img = mlx_new_image(all->mlx, all->width, all->height);
 	all->img.data = (int *)mlx_get_data_addr(all->img.img, \
 	&all->img.bits_per_pixel, &all->img.line_length, &all->img.endian);
 }
 
-void	calc_init(t_all *all, t_calc *cal, int x)
+void		calc_init(t_all *all, t_calc *cal, int x)
 {
 	cal->camerax = 2 * x / (double)all->width - 1;
 	cal->raydirx = all->dirx + all->planex * cal->camerax;
@@ -58,6 +71,7 @@ void	calc_init(t_all *all, t_calc *cal, int x)
 t_sprite	*sprite_init(t_all *all)
 {
 	t_sprite *tmp;
+
 	if (!(tmp = (t_sprite *)malloc(sizeof(t_sprite) * (all->spr_num))))
 		return (NULL);
 	ft_bzero(tmp, sizeof(t_sprite) * (all->spr_num));

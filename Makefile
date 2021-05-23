@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/23 20:40:53 by heom             ###   ########.fr        #
+#    Updated: 2021/05/23 21:10:25 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	make -C $(LIBDIR) all
-	make -C $(MLXDIR) all
+	make -C ./get_screen all
 	cp $(MLXDIR)/$(LIBMLX) ./
 	$(CC) -o $@ $(LXFLAGS) $(LIBDIR)/libft.a $(LIBMLX) $^ 
 
@@ -98,13 +98,13 @@ clean :
 		$(RM) $(OBJ)
 		$(RM) bitmap.bmp
 		make -C $(LIBDIR) clean
-		make -C $(MLXDIR) clean
-		rm ./libmlx.a
+		make -C ./get_screen clean
 
 fclean : clean
 		$(RM) $(NAME)
 		make -C $(LIBDIR) fclean
-		make -C $(MLXDIR) clean
+		make -C ./get_screen clean
+		rm -f $(LIBMLX)
 
 re: fclean all
 
