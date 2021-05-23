@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 16:34:00 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 19:48:55 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			r_ran_chk(int rw, int rh)
 	int max;
 
 	max = 2147483647;
-	if(0 < rw && rw <= max && 0 < rh && rh <= max)
+	if (0 < rw && rw <= max && 0 < rh && rh <= max)
 		return (1);
 	return (0);
 }

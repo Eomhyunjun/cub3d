@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 00:22:34 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 14:28:42 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 20:25:18 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int		info_check(int fd, char **line, t_info *parse_info)
 	while (get_next_line_arg(fd, line, &res))
 	{
 		if ((res = parsing_info(*line, parse_info)) == 0)
-			return (0); /* duple err */
+			return (0);
 		if (res == 2)
-			break ; /* readAll */
+			break ;
 		free(*line);
 	}
 	while (i < 8)

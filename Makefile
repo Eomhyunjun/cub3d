@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/23 19:04:55 by heom             ###   ########.fr        #
+#    Updated: 2021/05/23 20:40:53 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-LXFLAGS = $(MLXOPT) -framework OpenGL -framework AppKit -lz $(DEBUGF)
+LXFLAGS = $(MLXOPT) -framework OpenGL -framework AppKit -lz $(DEBUGF) -O3
 
 DEBUGF = -g3 -fsanitize=address
 # DEBUGF = -g3 -fsanitize=address
@@ -26,6 +26,7 @@ RM = rm -f
 MLXDIR = mlx/
 
 MLXOPT = -L./mlx -lmlx
+
 LIBMLX = libmlx.a
 
 LIBDIR = utils/libft/
@@ -64,7 +65,6 @@ GRAPHIC = \
 	init \
 	buf \
 	texture_init \
-	draw \
 	key \
 	make_texnum \
 	rotation \
@@ -91,6 +91,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	make -C $(LIBDIR) all
 	make -C $(MLXDIR) all
+	cp $(MLXDIR)/$(LIBMLX) ./
 	$(CC) -o $@ $(LXFLAGS) $(LIBDIR)/libft.a $(LIBMLX) $^ 
 
 clean :
@@ -98,6 +99,7 @@ clean :
 		$(RM) bitmap.bmp
 		make -C $(LIBDIR) clean
 		make -C $(MLXDIR) clean
+		rm ./libmlx.a
 
 fclean : clean
 		$(RM) $(NAME)

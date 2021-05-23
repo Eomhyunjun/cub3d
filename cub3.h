@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 17:55:58 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 20:41:19 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,6 @@ int			main_loop(t_all *all);
 int			exit_loop(t_all *all);
 
 void		all_init(t_all *all, t_info *parse_info);
-void		malloc_buf(t_all *all);
 void		put_wall_buf(t_all *all,t_calc *cal, int x);
 void		put_back_buf(t_all *all, int x);
 int			load_image(t_all *all, int *texture, char *path, t_img *img);
@@ -212,14 +211,12 @@ void		set_hit(t_all *all, t_calc *cal, t_sprite *spr);
 void		set_draw_point(t_all *all, t_calc *cal, int x);
 void		set_tex_point(t_all *all, t_calc *cal);
 
-void		draw(t_all *all);
 void		key_update(t_all *all);
 int			key_press(int key, t_all *all);
 int			key_release(int key, t_all *all);
 
 void		rotation_pro(t_info *parse_info, t_all *all);
 void		rotation(t_all *all, int degree);
-
 
 int			malloc_zbuf(t_all *all);
 t_sprite	*sprite_init(t_all *all);

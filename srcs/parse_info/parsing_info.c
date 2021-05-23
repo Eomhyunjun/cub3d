@@ -6,15 +6,15 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:55 by heom              #+#    #+#             */
-/*   Updated: 2021/05/09 16:42:30 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 19:49:12 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-int 	parsing_info(char *line, t_info *parse_info)
+int		parsing_info(char *line, t_info *parse_info)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	if (line[0] == '\0')
