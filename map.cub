@@ -1,9 +1,9 @@
 R  500 500
-NO ./src/texture/north.xpm
-SO ./src/texture/south.xpm
-WE ./src/texture/west.xpm
-EA ./src/texture/east.xpm
-S ./src/texture/sprite.xpm
+NO ./srcs/texture/north.xpm
+SO ./srcs/texture/south.xpm
+WE ./srcs/texture/west.xpm
+EA ./srcs/texture/east.xpm
+S ./srcs/texture/sprite.xpm
 F 114,153,15
 C 255,255,15
 

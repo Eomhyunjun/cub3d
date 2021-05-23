@@ -6,13 +6,13 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:21:42 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 13:37:32 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 17:55:44 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-void sort_spr(t_all *all, t_sprite *spr, int spr_num)
+void sort_spr(t_all *all, t_sprite *spr)
 {
 	int i;
 	int j;
@@ -39,7 +39,6 @@ void sort_spr(t_all *all, t_sprite *spr, int spr_num)
 void	draw_sprite(t_all *all,t_sprite *spr,int x,int spr_x)
 {
 	int	pixel;
-	int	dot;
 	int	center;
 	int	spr_y;
 	int	y;
@@ -102,7 +101,7 @@ void	calc(t_all *all)
 		put_wall_buf(all, &cal, x);
 		x++;
 	}
-	sort_spr(all, spr, all->spr_num);
+	sort_spr(all, spr);
 	for(int i = 0; i < all->spr_num; i++)
 		put_spr_buf(all, &spr[i]);
 }

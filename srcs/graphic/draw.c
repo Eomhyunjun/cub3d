@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 20:14:44 by heom              #+#    #+#             */
-/*   Updated: 2021/05/19 15:38:40 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 18:02:18 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void	draw(t_all *all)
 		y++;
 		x = 0;
 	}
+	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, all->img.img);
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
+	mlx_sync(MLX_SYNC_WIN_CMD_COMPLETED, all->win);
 }

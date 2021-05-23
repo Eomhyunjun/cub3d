@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:20:04 by heom              #+#    #+#             */
-/*   Updated: 2021/05/21 19:46:40 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 17:55:28 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	set_draw_point(t_all *all, t_calc *cal, int x)
 
 void	set_tex_point(t_all *all, t_calc *cal)
 {
-		cal->texnum = make_texnum(all, cal->stepx, cal->stepy, cal->side);
+		cal->texnum = make_texnum(cal->stepx, cal->stepy, cal->side);
 
 		if (cal->side == 0)
 			cal->wallx = all->posy + cal->perpwalldist * cal->raydiry;

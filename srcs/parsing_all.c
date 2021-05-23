@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:56:51 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 14:14:01 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 17:50:43 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		parsing_all(t_info *parse_info, t_list *map_list, char ***map, char *argv)
 {
 	char	*line;
 	int		fd;
-	int		longlen;
 	int		res;
 
 	fd = open(argv, O_RDWR);

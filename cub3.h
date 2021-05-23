@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 16:34:57 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 17:55:58 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include "utils/get_next_line/get_next_line.h"
+# include "utils/gnl/get_next_line.h"
 # include "utils/libft/libft.h"
 # include "mlx/mlx.h"
 
@@ -203,7 +203,7 @@ void		put_wall_buf(t_all *all,t_calc *cal, int x);
 void		put_back_buf(t_all *all, int x);
 int			load_image(t_all *all, int *texture, char *path, t_img *img);
 int			texture_init(t_all *all, t_info *parse_info);
-int			make_texnum(t_all *all, int stepx, int stepy, int side);
+int			make_texnum(int stepx, int stepy, int side);
 
 void		calc(t_all *all);
 void		calc_init(t_all *all, t_calc *cal, int x);
@@ -225,6 +225,6 @@ int			malloc_zbuf(t_all *all);
 t_sprite	*sprite_init(t_all *all);
 void		set_sprite(t_all *all, t_calc *cal, t_sprite *spr);
 void		set_coef(t_all *all, t_sprite *spr);
-void		sort_spr(t_all *all, t_sprite *spr, int spr_num);
+void		sort_spr(t_all *all, t_sprite *spr);
 int			is_x_here(t_all *all, t_calc *cal, t_sprite *spr);
 #endif

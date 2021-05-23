@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/23 17:34:12 by heom             ###   ########.fr        #
+#    Updated: 2021/05/23 17:56:30 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,19 +26,20 @@ RM = rm -f
 MLXDIR = mlx/
 
 MLXOPT = -L./mlx -lmlx
+LIBMLX = libmlx.dylib
 
 LIBDIR = utils/libft/
 
 MAIN = \
-	main \
+	main.c \
 
 SRCS = \
-	src/get_next_line_arg \
-	src/parsing_all \
-	src/split_free \
-	src/print_err \
+	get_next_line_arg \
+	parsing_all \
+	split_free \
+	print_err \
 	
-INFO_PARSE = \	
+INFO_PARSE = \
 	info_check \
 	parsing_info \
 	parse_r \
@@ -57,40 +58,41 @@ MAP_PARSE = \
 	parsing_map \
 
 GRAPHIC = \
-	src/graphic/set \
-	src/graphic/mlx_process \
-	src/graphic/main_loop \
-	src/graphic/init \
-	src/graphic/buf \
-	src/graphic/texture_init \
-	src/graphic/draw \
-	src/graphic/key \
-	src/graphic/make_texnum \
-	src/graphic/rotation \
-	src/graphic/calc \
-	src/graphic/sprite \
+	set \
+	mlx_process \
+	main_loop \
+	init \
+	buf \
+	texture_init \
+	draw \
+	key \
+	make_texnum \
+	rotation \
+	calc \
+	sprite \
 
 GNL =	get_next_line \
 		get_next_line_utils \
 
-FIL =	$(MAIN) \
-		$(addsuffix .c, $(addprefix srcs/, $(SRC))) \
+FIL =	$(addsuffix .c, $(addprefix srcs/, $(SRCS))) \
 		$(addsuffix .c, $(addprefix srcs/parse_info/, $(INFO_PARSE))) \
 		$(addsuffix .c, $(addprefix srcs/map_parsing/, $(MAP_PARSE))) \
 		$(addsuffix .c, $(addprefix srcs/graphic/, $(GRAPHIC))) \
-		$(addsuffix .c, $(addprefix utils/gnl/, $(GNL)))
+		$(addsuffix .c, $(addprefix utils/gnl/, $(GNL))) \
+		$(MAIN)
 
 OBJ = $(FIL:.c=.o)
 
 all : $(NAME)
 
 .c.o:
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME) : $(OBJ)
 	make -C $(LIBDIR) all
 	make -C $(MLXDIR) all
-	$(CC) -o $(NAME) $(LXFLAGS) $(MAIN) $(UTILS) $(SRCS) $(OBJ) $(LIBDIR)/libft.a mlx/libmlx.dylib
+	ln -s $(MLXDIR)/$(LIBMLX) ./$(LIBMLX)
+	$(CC) -o $@ $(LXFLAGS) $(LIBDIR)/libft.a $(LIBMLX) $^ 
 
 clean :
 		$(RM) $(OBJ)
@@ -101,7 +103,7 @@ clean :
 fclean : clean
 		$(RM) $(NAME)
 		make -C $(LIBDIR) fclean
-		make -C $(MLXDIR) fclean
+		make -C $(MLXDIR) clean
 
 re: fclean all
 
