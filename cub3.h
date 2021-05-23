@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/22 00:44:48 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 16:34:57 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ typedef struct	s_sprite
 
 typedef struct  s_info
 {
-	char		*rw;
-	char		*rh;
+	int			rw;
+	int			rh;
 	char		*no;
 	char		*so;
 	char		*we;
 	char		*ea;
 	char		*s;
-	char		*f;
-	char		*c;
+	int			f;
+	int			c;
 	int			dup[9];
 	int			longlen;
 	int			cols;
@@ -186,11 +186,9 @@ char			**check_map(t_list *map_list, t_info *parse_info);
 /*
 --------------------- make_color -------------------
 */
-int		create_trgb(char *trgb);
-int		get_t(int trgb);
-int		get_r(int trgb);
-int		get_g(int trgb);
-int		get_b(int trgb);
+int				create_trgb(int t, int r, int g, int b);
+int				color_len_chk(int r, int g, int b);
+int				make_rgb(char *line, t_info *parse_info, int start, int i);
 
 /*
 --------------------- graphics -------------------
