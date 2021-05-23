@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/23 17:56:30 by heom             ###   ########.fr        #
+#    Updated: 2021/05/23 19:04:55 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LXFLAGS = $(MLXOPT) -framework OpenGL -framework AppKit -lz $(DEBUGF)
 
-DEBUGF = -g3
+DEBUGF = -g3 -fsanitize=address
 # DEBUGF = -g3 -fsanitize=address
 
 RM = rm -f
@@ -26,7 +26,7 @@ RM = rm -f
 MLXDIR = mlx/
 
 MLXOPT = -L./mlx -lmlx
-LIBMLX = libmlx.dylib
+LIBMLX = libmlx.a
 
 LIBDIR = utils/libft/
 
@@ -91,7 +91,6 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	make -C $(LIBDIR) all
 	make -C $(MLXDIR) all
-	ln -s $(MLXDIR)/$(LIBMLX) ./$(LIBMLX)
 	$(CC) -o $@ $(LXFLAGS) $(LIBDIR)/libft.a $(LIBMLX) $^ 
 
 clean :

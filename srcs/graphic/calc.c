@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:21:42 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 17:55:44 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 18:58:13 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_sprite(t_all *all,t_sprite *spr,int x,int spr_x)
 				pixel < texheight * texwidth)
 		{
 			if (all->texture[4][pixel] & 0x00FFFFFF)
-				all->buf[y][x] = all->texture[4][pixel];
+				(all->img).data[y * all->width + x] = all->texture[4][pixel];
 		}
 	}
 }

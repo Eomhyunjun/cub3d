@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:40:41 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 17:52:58 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/23 19:00:39 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int		exit_loop(t_all *all)
 
 int		main_loop(t_all *all)
 {
-	if (malloc_zbuf(all))
-		return (0);
 	calc(all);
 	draw(all);
 	key_update(all);
