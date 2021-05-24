@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 21:01:33 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 13:29:38 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,29 @@
 # define K_D			2
 # define K_LF			123
 # define K_RT			124
-#define numSprites 1
 
-
-# define texwidth 64
-# define texheight 64
-
-
+# define TEXWIDHT 64
+# define TEXHEIGHT 64
 
 typedef struct	s_sprite
 {
-	double			x;
-	double			y;
-	double			distx;
-	double			disty;
-	double			coefx;
-	double			coefy;
-	double			centerx;
-	double			depth_unit;
-	double			real_depth;
-	double			size;
-	double			drawstart;
-	double			drawend;
-	double			tex_scale;
-	double			tex_step;
+	double		x;
+	double		y;
+	double		distx;
+	double		disty;
+	double		coefx;
+	double		coefy;
+	double		centerx;
+	double		depth_unit;
+	double		real_depth;
+	double		size;
+	double		drawstart;
+	double		drawend;
+	double		tex_scale;
+	double		tex_step;
 }				t_sprite;
 
-typedef struct  s_info
+typedef struct	s_info
 {
 	int			rw;
 	int			rh;
@@ -101,7 +97,7 @@ typedef struct	s_all
 	int			height;
 	int			**buf;
 	char		**map;
-	
+
 	double		posx;
 	double		posy;
 	double		dirx;
@@ -115,7 +111,7 @@ typedef struct	s_all
 	int			k_d;
 	int			k_lf;
 	int			k_rt;
-	int			texture[7][texheight * texwidth];
+	int			texture[7][TEXHEIGHT * TEXWIDHT];
 	double		movespeed;
 	double		rotspeed;
 
@@ -124,7 +120,7 @@ typedef struct	s_all
 	double		*zbuf;
 }				t_all;
 
-typedef struct s_calc
+typedef struct	s_calc
 {
 	double		camerax;
 	double		raydirx;
@@ -136,11 +132,11 @@ typedef struct s_calc
 	double		deltadistx;
 	double		deltadisty;
 	double		perpwalldist;
-	int 		stepx;
-	int 		stepy;
-	int 		hit;
-	int 		side;
-	int 		texnum;
+	int			stepx;
+	int			stepy;
+	int			hit;
+	int			side;
+	int			texnum;
 	int			lineheight;
 	int			drawstart;
 	int			drawend;
@@ -153,20 +149,18 @@ typedef struct s_calc
 	double		texpos;
 }				t_calc;
 
-
-
-int	mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
-
 /*
---------------------- arg -------------------
+**--------------------- arg -------------------
 */
+
 int				get_next_line_arg(int fd, char **line, int *res);
-int				parsing_all(t_info  *parse_info, t_list  *map_list, char ***map, char *argv);
+int				parsing_all(t_info *parse_info, t_list *map_list \
+				, char ***map, char *argv);
 void			split_free(char **bottle);
 int				print_err(char *str);
 
 /*
---------------------- parsing_info -------------------
+**--------------------- parsing_info -------------------
 */
 int				info_check(int fd, char **line, t_info *parse_info);
 int				parsing_info(char *line, t_info *parse_info);
@@ -176,55 +170,55 @@ int				parse_rgb(char *line, t_info *parse_info, int start);
 int				dup_check(char *line, t_info *parse_info);
 
 /*
---------------------- parsing_map -------------------
+**--------------------- parsing_map -------------------
 */
+
 void			parsing_map(char *line, t_list **map_list, t_info *parse_info);
 char			*put_space(int longlen);
-int				copy_map(t_list *map_list, char **map, t_info *parse_info, int y);
+int				copy_map(t_list *map_list, char **map \
+				, t_info *parse_info, int y);
 char			**make_matrix(t_list *map_list, char **map, t_info *parse_info);
 int				exam_map(char **map, int x, int y);
 int				map_errchk(char **map);
 char			**check_map(t_list *map_list, t_info *parse_info);
-
 /*
---------------------- make_color -------------------
+**--------------------- make_color -------------------
 */
 int				create_trgb(int t, int r, int g, int b);
 int				color_len_chk(int r, int g, int b);
 int				make_rgb(char *line, t_info *parse_info, int start, int i);
-
 /*
---------------------- graphics -------------------
+**--------------------- graphics -------------------
 */
-int			mlx_process(t_info *parse_info, char **map);
-int			main_loop(t_all *all);
-int			exit_loop(t_all *all);
+int				mlx_process(t_info *parse_info, char **map);
+int				main_loop(t_all *all);
+int				exit_loop(t_all *all);
 
-void		all_init(t_all *all, t_info *parse_info);
-void		put_wall_buf(t_all *all,t_calc *cal, int x);
-void		put_back_buf(t_all *all, int x);
-int			load_image(t_all *all, int *texture, char *path, t_img *img);
-int			texture_init(t_all *all, t_info *parse_info);
-int			make_texnum(int stepx, int stepy, int side);
+void			all_init(t_all *all, t_info *parse_info);
+void			put_wall_buf(t_all *all, t_calc *cal, int x);
+void			put_back_buf(t_all *all, int x);
+int				load_image(t_all *all, int *texture, char *path, t_img *img);
+int				texture_init(t_all *all, t_info *parse_info);
+int				make_texnum(int stepx, int stepy, int side);
 
-void		calc(t_all *all);
-void		calc_init(t_all *all, t_calc *cal, int x);
-void		set_step_side(t_all *all, t_calc *cal);
-void		set_hit(t_all *all, t_calc *cal, t_sprite *spr);
-void		set_draw_point(t_all *all, t_calc *cal, int x);
-void		set_tex_point(t_all *all, t_calc *cal);
+void			calc(t_all *all);
+void			calc_init(t_all *all, t_calc *cal, int x);
+void			set_step_side(t_all *all, t_calc *cal);
+void			set_hit(t_all *all, t_calc *cal, t_sprite *spr);
+void			set_draw_point(t_all *all, t_calc *cal, int x);
+void			set_tex_point(t_all *all, t_calc *cal);
 
-void		key_update(t_all *all);
-int			key_press(int key, t_all *all);
-int			key_release(int key, t_all *all);
+void			key_update(t_all *all);
+int				key_press(int key, t_all *all);
+int				key_release(int key, t_all *all);
 
-void		rotation_pro(t_info *parse_info, t_all *all);
-void		rotation(t_all *all, int degree);
+void			rotation_pro(t_info *parse_info, t_all *all);
+void			rotation(t_all *all, int degree);
 
-int			malloc_zbuf(t_all *all);
-t_sprite	*sprite_init(t_all *all);
-void		set_sprite(t_all *all, t_calc *cal, t_sprite *spr);
-void		set_coef(t_all *all, t_sprite *spr);
-void		sort_spr(t_all *all, t_sprite *spr);
-int			is_x_here(t_all *all, t_calc *cal, t_sprite *spr);
+int				malloc_zbuf(t_all *all);
+t_sprite		*sprite_init(t_all *all);
+void			set_sprite(t_all *all, t_calc *cal, t_sprite *spr);
+void			set_coef(t_all *all, t_sprite *spr);
+void			sort_spr(t_all *all, t_sprite *spr);
+int				is_x_here(t_all *all, t_calc *cal, t_sprite *spr);
 #endif

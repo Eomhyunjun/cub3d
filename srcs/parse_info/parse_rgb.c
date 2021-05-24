@@ -6,23 +6,28 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:32 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 19:45:24 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 14:09:50 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-int		parse_rgb(char *line, t_info *parse_info, int start)
+static	int	remove_space(char *line, int c)
 {
-	int	i;
-	int	j;
-	int	res;
+	while (line[c] == ' ')
+		c++;
+	return (c);
+}
+
+int			parse_rgb(char *line, t_info *parse_info, int start)
+{
+	int		i;
+	int		j;
+	int		res;
 
 	i = 0;
 	j = 0;
-	res = 0;
-	while (line[start] == ' ')
-		start++;
+	start = remove_space(line, start);
 	i = start;
 	while (ft_isdigit(line[i]) || line[i] == ',')
 	{
@@ -37,8 +42,7 @@ int		parse_rgb(char *line, t_info *parse_info, int start)
 			return (0);
 	}
 	res = make_rgb(line, parse_info, start, i);
-	while (line[i] == ' ')
-		i++;
+	i = remove_space(line, i);
 	if (line[i] != '\0')
 		return (0);
 	return (res);

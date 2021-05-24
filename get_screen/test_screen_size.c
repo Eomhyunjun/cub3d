@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_screen_size.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumoon <sumoon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 22:38:35 by sumoon            #+#    #+#             */
-/*   Updated: 2021/04/27 23:55:26 by sumoon           ###   ########.fr       */
+/*   Updated: 2021/05/24 13:41:35 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int	main(void)
 
 	mlx_init();
 	mlx_get_screen_size(mlx, &sizex, &sizey);
-	printf("width:%d height:%d\n", sizex, sizey);
 	return (0);
 }

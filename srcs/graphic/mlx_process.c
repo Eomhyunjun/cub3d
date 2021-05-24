@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:28:48 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 21:41:00 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 13:59:11 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int		mlx_process(t_info *parse_info, char **map)
 {
 	t_all	all;
-	
+
 	ft_bzero(&all, sizeof(all));
 	all.map = map;
 	all_init(&all, parse_info);
 	all.map[parse_info->pos[1]][parse_info->pos[0]] = 'x';
-	if(!(texture_init(&all, parse_info)))
+	if (!(texture_init(&all, parse_info)))
 		return (0);
 	mlx_hook(all.win, X_EVENT_KEY_PRESS, 0, &key_press, &all);
 	mlx_hook(all.win, X_EVENT_KEY_RELEASE, 0, &key_release, &all);

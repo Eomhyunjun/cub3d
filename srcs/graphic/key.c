@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 20:15:57 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 21:46:27 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 14:21:07 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		key_press(int key, t_all *all)
 {
 	if (key == K_ESC)
 		exit(0);
+		
 	if (key == K_W)
 		all->k_w = 1;
 	if (key == K_S)
@@ -63,6 +64,19 @@ void	key_go(t_all *all, int c)
 		all->posy += c * all->diry * all->movespeed;
 }
 
+void	key_left(t_all *all, int c)
+{
+	int x;
+	int y;
+
+	x = (int)(all->posx + c * all->diry * all->movespeed);
+	y = (int)(all->posy - c * all->dirx * all->movespeed);
+	if (all->map[(int)(all->posy)][x] == 'x')
+		all->posx += c * all->diry * all->movespeed;
+	if (all->map[y][(int)(all->posx)] == 'x')
+		all->posy += -c * all->dirx * all->movespeed;
+}
+
 void	key_update(t_all *all)
 {
 	if (all->k_w)
@@ -70,19 +84,9 @@ void	key_update(t_all *all)
 	if (all->k_s)
 		key_go(all, -1);
 	if (all->k_a)
-	{
-		if (all->map[(int)(all->posy)][(int)(all->posx - all->diry * all->movespeed)] == 'x')
-			all->posx -= all->diry * all->movespeed;
-		if (all->map[(int)(all->posy + all->dirx * all->movespeed)][(int)(all->posx)] == 'x')
-			all->posy += all->dirx * all->movespeed;
-	}
+		key_left(all, -1);
 	if (all->k_d)
-	{
-		if (all->map[(int)(all->posy - all->dirx * all->movespeed)][(int)(all->posx)] == 'x')
-			all->posy -= all->dirx * all->movespeed;
-		if (all->map[(int)(all->posy)][(int)(all->posx + all->diry * all->movespeed)] == 'x')
-			all->posx += all->diry * all->movespeed;
-	}
+		key_left(all, 1);
 	if (all->k_lf)
 		rotation(all, all->rotspeed * 180 / M_PI);
 	if (all->k_rt)

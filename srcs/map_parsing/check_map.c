@@ -6,32 +6,44 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 10:09:27 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 20:56:30 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 14:10:41 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3.h"
 
-// int	put_dirx(int *dirx)
-// {
-// 	dirx[0] = -1;
-// 	dirx[1] = 0;
-// 	dirx[2] = 1;
-// 	dirx[3] = 0;
-// 	dirx[4] = -1;
-// 	dirx[5] = -1;
-// 	dirx[6] = -1;
-// 	dirx[7] = 
-// }
-
-
-int	exam_map(char **map, int x, int y)
+void	put_dirx(int *dirx)
 {
-	int i;
-	int	g_dirx[8] = {-1, 0, 1, 0, -1, -1, 1, 1};
-	int	g_diry[8] = {0, 1, 0, -1, -1, 1, 1, -1};
+	dirx[0] = -1;
+	dirx[1] = 0;
+	dirx[2] = 1;
+	dirx[3] = 0;
+	dirx[4] = -1;
+	dirx[5] = -1;
+	dirx[6] = 1;
+	dirx[7] = 1;
+}
 
+void	put_diry(int *diry)
+{
+	diry[0] = 0;
+	diry[1] = 1;
+	diry[2] = 0;
+	diry[3] = -1;
+	diry[4] = -1;
+	diry[5] = 1;
+	diry[6] = 1;
+	diry[7] = -1;
+}
 
+int		exam_map(char **map, int x, int y)
+{
+	int	i;
+	int	g_dirx[8];
+	int	g_diry[8];
+
+	put_dirx(g_dirx);
+	put_diry(g_diry);
 	if (map[y][x] == '1' || map[y][x] == 'x' || map[y][x] == '2')
 		return (1);
 	if (map[y][x] == ' ')

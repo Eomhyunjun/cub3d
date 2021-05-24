@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:40:41 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 20:40:03 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 14:00:21 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		malloc_zbuf(t_all *all)
 {
 	double *buf;
+
 	if (!(buf = (double *)malloc(sizeof(double) * all->width)))
 		return (0);
 	buf = ft_memset((void *)buf, 0, all->width);
