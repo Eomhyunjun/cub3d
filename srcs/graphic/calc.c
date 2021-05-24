@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:21:42 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 13:55:17 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 15:11:25 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,5 @@ void	calc(t_all *all)
 	sort_spr(all, spr);
 	while (i < all->spr_num)
 		put_spr_buf(all, &spr[i++]);
+	free(spr);
 }

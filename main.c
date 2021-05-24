@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 13:41:15 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 16:07:54 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			main(int argc, char **argv)
 		parse_info.pos[0] = -1;
 		map_list = NULL;
 		if (!(res = parsing_all(&parse_info, map_list, &map, argv[1])))
-			return (print_err("Invalid value in map pile"));
+			return (print_err("Invalid value in map file"));
 		res = mlx_process(&parse_info, map);
 		split_free(map);
 	}

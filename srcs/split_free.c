@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 16:26:32 by heom              #+#    #+#             */
-/*   Updated: 2021/05/21 22:57:45 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 14:56:49 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	split_free(char **bottle)
 	i = 0;
 	while (bottle[i])
 		free(bottle[i++]);
+	free(bottle);
 }

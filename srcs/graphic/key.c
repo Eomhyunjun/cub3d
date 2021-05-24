@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 20:15:57 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 14:21:07 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 15:20:34 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int		key_press(int key, t_all *all)
 {
 	if (key == K_ESC)
-		exit(0);
-		
+		exit_loop(all);
 	if (key == K_W)
 		all->k_w = 1;
 	if (key == K_S)
@@ -35,7 +34,7 @@ int		key_press(int key, t_all *all)
 int		key_release(int key, t_all *all)
 {
 	if (key == K_ESC)
-		exit(0);
+		exit_loop(all);
 	if (key == K_W)
 		all->k_w = 0;
 	if (key == K_S)

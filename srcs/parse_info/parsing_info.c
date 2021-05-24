@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:55 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 19:49:12 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 15:28:34 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,5 @@ int		parsing_info(char *line, t_info *parse_info)
 		res = parse_rgb(line, parse_info, 2);
 	else
 		res = 2;
-	if (res == 1)
-		res = dup_check(line, parse_info);
-	return (res);
+	return (res == 1 ? dup_check(line, parse_info) : res);
 }

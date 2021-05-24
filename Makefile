@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/23 21:10:25 by heom             ###   ########.fr        #
+#    Updated: 2021/05/24 15:53:42 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,9 @@ NAME = cub3D
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LXFLAGS = $(MLXOPT) -framework OpenGL -framework AppKit -lz $(DEBUGF) -O3
-
-DEBUGF = -g3 -fsanitize=address
-# DEBUGF = -g3 -fsanitize=address
 
 RM = rm -f
 

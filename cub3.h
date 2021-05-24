@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 13:29:38 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 15:07:20 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ typedef struct	s_all
 
 	int			width;
 	int			height;
-	int			**buf;
 	char		**map;
 
 	double		posx;

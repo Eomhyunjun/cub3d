@@ -1,11 +1,11 @@
-R  6401 4800
+R  500 500
 NO ./srcs/texture/north.xpm
 SO ./srcs/texture/south.xpm
 WE ./srcs/texture/west.xpm
 EA ./srcs/texture/east.xpm
 S ./srcs/texture/sprite.xpm
-F 114,153,15
-C 255,255,15
+F 114,153,150
+C 0,0,150
 
 1111111111111
 1000000002001
@@ -23,6 +23,6 @@ C 255,255,15
 1000000002001
 1000000002001
 1000000002001
-100S000002001
+100E000002001
 1000000002001
 1111111111111

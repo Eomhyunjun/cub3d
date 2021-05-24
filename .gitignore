@@ -1,2 +1,5 @@
 mlx_example
 setting.json
+.*
+.o
+.out

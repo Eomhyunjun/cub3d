@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/23 19:48:55 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 14:55:14 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int			parse_r(char *line, t_info *parse_info)
 	parse_info->rw = ft_atoi(bottle[1]);
 	parse_info->rh = ft_atoi(bottle[2]);
 	res = r_ran_chk(parse_info->rw, parse_info->rh);
-	free(bottle);
+	split_free(bottle);
 	return (res);
 }

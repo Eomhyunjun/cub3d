@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:40:41 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 14:00:21 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 16:09:42 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int		malloc_zbuf(t_all *all)
 int		exit_loop(t_all *all)
 {
 	(void)all;
+	split_free(all->map);
+	mlx_destroy_image(all->mlx, all->img.img);
 	exit(0);
 	return (0);
 }
@@ -36,6 +38,7 @@ int		main_loop(t_all *all)
 		return (0);
 	calc(all);
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
+	free(all->zbuf);
 	key_update(all);
 	return (0);
 }

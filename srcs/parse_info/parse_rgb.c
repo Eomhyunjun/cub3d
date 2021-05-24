@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:25:32 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 14:09:50 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 16:03:26 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ int			parse_rgb(char *line, t_info *parse_info, int start)
 			i++;
 			j++;
 		}
-		else
-			return (0);
 	}
-	res = make_rgb(line, parse_info, start, i);
+	j = i;
 	i = remove_space(line, i);
 	if (line[i] != '\0')
 		return (0);
+	res = make_rgb(line, parse_info, start, j);
 	return (res);
 }
