@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:16:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 15:07:20 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 20:25:55 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ int				make_rgb(char *line, t_info *parse_info, int start, int i);
 /*
 **--------------------- graphics -------------------
 */
-int				mlx_process(t_info *parse_info, char **map);
+int				mlx_process(t_info *parse_info, char **map, int argc);
 int				main_loop(t_all *all);
 int				exit_loop(t_all *all);
 
@@ -220,4 +220,11 @@ void			set_sprite(t_all *all, t_calc *cal, t_sprite *spr);
 void			set_coef(t_all *all, t_sprite *spr);
 void			sort_spr(t_all *all, t_sprite *spr);
 int				is_x_here(t_all *all, t_calc *cal, t_sprite *spr);
+
+/*
+**--------------------------save--------------------
+*/
+int				save_bitmap(t_all *all);
+int				make_bitmap_file(t_all *all);
+
 #endif

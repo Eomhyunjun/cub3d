@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:21:42 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 15:11:25 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 19:32:02 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	draw_sprite(t_all *all, t_sprite *spr, int x, int spr_x)
 
 	center = all->height / 2;
 	y = (center - spr->size / 2) - 1;
-	if (y < 0)
-		y = -1;
 	spr_y = -1;
 	while (++y < center + spr->size / 2)
 	{

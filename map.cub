@@ -1,9 +1,9 @@
-R  500 500
+R  1000000000 100000000
 NO ./srcs/texture/north.xpm
 SO ./srcs/texture/south.xpm
 WE ./srcs/texture/west.xpm
 EA ./srcs/texture/east.xpm
-S ./srcs/texture/sprite.xpm
+S ./srcs/texture/barrel.xpm
 F 114,153,150
 C 0,0,150
 

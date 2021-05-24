@@ -6,7 +6,7 @@
 #    By: heom <heom@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 19:25:57 by heom              #+#    #+#              #
-#    Updated: 2021/05/24 15:53:42 by heom             ###   ########.fr        #
+#    Updated: 2021/05/24 20:12:04 by heom             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,10 @@ GRAPHIC = \
 	calc \
 	sprite \
 
+SAVE = \
+	save_bitmap \
+	make_bitmap_file \
+
 GNL =	get_next_line \
 		get_next_line_utils \
 
@@ -75,6 +79,7 @@ FIL =	$(addsuffix .c, $(addprefix srcs/, $(SRCS))) \
 		$(addsuffix .c, $(addprefix srcs/parse_info/, $(INFO_PARSE))) \
 		$(addsuffix .c, $(addprefix srcs/map_parsing/, $(MAP_PARSE))) \
 		$(addsuffix .c, $(addprefix srcs/graphic/, $(GRAPHIC))) \
+		$(addsuffix .c, $(addprefix srcs/save/, $(SAVE))) \
 		$(addsuffix .c, $(addprefix utils/gnl/, $(GNL))) \
 		$(MAIN)
 

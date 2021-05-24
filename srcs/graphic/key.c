@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 20:15:57 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 15:20:34 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 19:32:40 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ void	key_go(t_all *all, int c)
 
 	x = (int)(all->posx + c * all->dirx * all->movespeed);
 	y = (int)(all->posy + c * all->diry * all->movespeed);
-	if (all->map[(int)(all->posy)][x] == 'x')
+	if (all->map[(int)(all->posy)][x] == 'x' || \
+	all->map[(int)(all->posy)][x] == '2')
 		all->posx += c * all->dirx * all->movespeed;
-	if (all->map[y][(int)(all->posx)] == 'x')
+	if (all->map[y][(int)(all->posx)] == 'x' || \
+	all->map[y][(int)(all->posx)] == '2')
 		all->posy += c * all->diry * all->movespeed;
 }
 
@@ -70,9 +72,11 @@ void	key_left(t_all *all, int c)
 
 	x = (int)(all->posx + c * all->diry * all->movespeed);
 	y = (int)(all->posy - c * all->dirx * all->movespeed);
-	if (all->map[(int)(all->posy)][x] == 'x')
+	if (all->map[(int)(all->posy)][x] == 'x' || \
+	all->map[(int)(all->posy)][x] == '2')
 		all->posx += c * all->diry * all->movespeed;
-	if (all->map[y][(int)(all->posx)] == 'x')
+	if (all->map[y][(int)(all->posx)] == 'x' || \
+	all->map[y][(int)(all->posx)] == '2')
 		all->posy += -c * all->dirx * all->movespeed;
 }
 
