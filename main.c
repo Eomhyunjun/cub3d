@@ -6,7 +6,7 @@
 /*   By: heom <heom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 19:24:29 by heom              #+#    #+#             */
-/*   Updated: 2021/05/24 19:52:13 by heom             ###   ########.fr       */
+/*   Updated: 2021/05/24 20:44:58 by heom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int			main(int argc, char **argv)
 	t_list	*map_list;
 
 	if (!(argc <= 3 && argc >= 2 && !ft_strncmpr(argv[1], ".cub", 4)))
-		return (print_err("map name is invalid."));
+		return (print_err("map name is invalid or wrong arg"));
+	if (argc == 3)
+		if (ft_strncmp(argv[2], "--save", 6))
+			return (print_err("Do it with a set format."));
 	if (argc >= 2)
 	{
 		res = 0;
@@ -33,6 +36,5 @@ int			main(int argc, char **argv)
 		res = mlx_process(&parse_info, map, argc);
 		split_free(map);
 	}
-	print_err("Do it with a set format.");
 	return (0);
 }
