@@ -1,10 +1,10 @@
-R  1000000000 100000000
+R  500 500
 NO ./srcs/texture/north.xpm
 SO ./srcs/texture/south.xpm
 WE ./srcs/texture/west.xpm
 EA ./srcs/texture/east.xpm
 S ./srcs/texture/barrel.xpm
-F 114,153,150
+F 114,153,222
 C 0,0,150
 
 1111111111111
@@ -23,6 +23,6 @@ C 0,0,150
 1000000002001
 1000000002001
 1000000002001
-100E000002001
+100N000002001
 1000000002001
 1111111111111
