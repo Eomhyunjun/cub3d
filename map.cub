@@ -4,8 +4,8 @@ SO ./srcs/texture/south.xpm
 WE ./srcs/texture/west.xpm
 EA ./srcs/texture/east.xpm
 S ./srcs/texture/barrel.xpm
-F 114,153,222
-C 0,0,150
+F 123,153,123
+C 1,1, 150
 
 1111111111111
 1000000002001

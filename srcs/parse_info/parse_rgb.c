@@ -24,7 +24,6 @@ int			parse_rgb(char *line, t_info *parse_info, int start)
 	int		i;
 	int		j;
 
-	i = 0;
 	j = 0;
 	start = remove_space(line, start);
 	i = start;
@@ -38,8 +37,10 @@ int			parse_rgb(char *line, t_info *parse_info, int start)
 			j++;
 		}
 		else
-			return (0);
+			break ;
 	}
+	if (j != 2 || !ft_isdigit(line[start]))
+		return (0);
 	j = i;
 	i = remove_space(line, i);
 	if (line[i] != '\0')
